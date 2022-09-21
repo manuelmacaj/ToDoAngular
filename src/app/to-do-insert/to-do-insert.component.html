@@ -1,0 +1,22 @@
+<nav>
+    <ul class="navList">
+        <li class="elemListNav">
+            <a class="activeElemNav" routerLink="/insert">Crea ToDo</a>
+        </li>
+        <li class="elemListNav">
+            <a class="aListNav" routerLink="/todos">ToDo List</a>
+        </li>
+        <li class="elemListNav">
+            <a class="aListNav" href="#">Login</a>
+        </li>
+        <li class="elemListNav">
+            <a class="aListNav" href="#">Logout</a>
+        </li>
+    </ul>
+</nav>
+<div class="insertToDO">
+    <ng-container>
+        <input type="text" placeholder="Aggiungi un ToDo" [(ngModel)]="textTodo" name="textTodo">
+        <button (click)="takeToDo()">+</button>
+    </ng-container>
+</div>

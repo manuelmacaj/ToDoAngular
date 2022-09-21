@@ -1,0 +1,84 @@
+.elemTodoDetail {
+    margin: 15px;
+}
+
+ul {
+    list-style: none;
+    margin: auto;
+    padding: 0;
+}
+
+div {
+    padding: 10px;
+    margin: 15px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 1rem;
+}
+
+input[type=text],
+input[type="datetime-local"] {
+    margin: 5px;
+    font-weight: bold;
+    color: black;
+    width: 50%;
+    font-size: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:hover {
+    border: 3px solid #555;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+.disabledField[disabled] {
+    color: black;
+}
+
+.enabledField:hover {
+    background-color: #98FB98;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.disabledField:hover {
+    background-color: #fdaeae;
+    color: black;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    cursor: not-allowed;
+}
+
+.btnSingleToDo {
+    background: linear-gradient(to right, #196BCA, #6433E0);
+    background-color: #196BCA;
+    color: #fff;
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 14px 15px;
+    border: 2px solid #000;
+    border-radius: 17px;
+    display: inline-block;
+    box-shadow: 0px 0px 10px 0px rgba(27.4859619140625, 26.60171468123745, 26.60171468123745, 0.5);
+}
+
+.btnSingleToDo:hover {
+    background: linear-gradient(to right, #5d8d39, #595171);
+    -webkit-transition: 0.5s;
+    transition: 1.5s;
+}
+
+.btnSingleToDo:active {
+    transform: scale(0.95);
+}

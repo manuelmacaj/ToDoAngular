@@ -1,0 +1,48 @@
+<nav>
+    <ul class="navList">
+        <li class="elemListNav">
+            <a class="aListNav" routerLink="/insert">Crea ToDo</a>
+        </li>
+        <li class="elemListNav">
+            <a class="aListNav" routerLink="/todos">ToDo List</a>
+        </li>
+        <li class="elemListNav">
+            <a class="aListNav" href="#">Login</a>
+        </li>
+        <li class="elemListNav">
+            <a class="aListNav" href="#">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<div>
+    <span>Modifica il seguente ToDo, specificando anche se il seguente task è stato completato!</span>
+    <ul>
+        <li class="elemTodoDetail">
+            <label>Test</label><br>
+            <input class="disabledField" type="text" [ngModel]="toDoSelected.idTodo" disabled>
+        </li>
+        <li class="elemTodoDetail">
+            <label>Todo:</label><br>
+            <input [ngClass]="toDoSelected.fatto == false ? 'enabledField' : 'disabledField'" type="text"
+                [(ngModel)]="toDoSelected.toDoText" [disabled]="toDoSelected.fatto == true">
+        </li>
+        <li class="elemTodoDetail">
+            <label for="currentTime">Data creazione:</label><br>
+            <input name="currentTime" class="disabledField" type="datetime-local" [ngModel]="toDoSelected.currentTime"
+                disabled>
+        </li>
+        <li class="elemTodoDetail">
+            <label for="trueFalse">Completato:</label><br>
+            <select *ngIf="this.checkStatus == false" name="trueFalse" [(ngModel)]="this.checkStatus">
+                <option *ngFor="let status of todoStatus" [value]="status">{{status}}</option>
+            </select><br>
+            <select *ngIf="this.checkStatus == true" name="trueFalse" [(ngModel)]="this.checkStatus" disabled>
+                <option *ngFor="let status of todoStatus" [value]="status">{{status}}</option>
+            </select><br>
+        </li>
+    </ul>
+    <button class="btnSingleToDo" (click)="goBack()">Go Back</button>
+    <button class="btnSingleToDo" (click)="deleteTodo()">Delete</button>
+    <button class="btnSingleToDo" *ngIf="this.toDoSelected.fatto == false" (click)="updateTodo()">Update</button>
+</div>

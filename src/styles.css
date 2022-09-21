@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    min-width: 250px;
+}
+
+/* Include the padding and border in an element's total width and height */
+* {
+    box-sizing: border-box;
+}
+
+.navList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.elemListNav {
+    float: left;
+}
+
+.elemListNav .aListNav {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.activeElemNav {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.elemListNav .aListNav:hover {
+    transition: 0.5s;
+    background-color: #111;
+}
+
+.elemListNav .aListNav:hover:not(.activeElemNav) {
+    background-color: #111;
+}
+
+.activeElemNav {
+    background-color: #04AA6D;
+}
+
+.activeElemNav:hover {
+    transition: 0.5s;
+    background-color: #07ea97;
+}
+
+.activeElemNav:not(focus) {
+    transition: 0.5s;
+}
+
