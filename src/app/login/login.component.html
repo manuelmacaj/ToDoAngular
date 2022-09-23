@@ -1,0 +1,38 @@
+<div>
+    <h1>ToDoApp - Login</h1>
+</div>
+<nav>
+    <ul class="navList">
+        <li class="elemListNav">
+            <a class="aListNav" routerLink="/insert">Crea ToDo</a>
+        </li>
+        <li class="elemListNav">
+            <a class="aListNav" routerLink="/todos">ToDo List</a>
+        </li>
+        <li class="elemListNav">
+            <a class="activeElemNav" routerLink="/login">Login</a>
+        </li>
+        <li class="elemListNav">
+            <a class="aListNav" href="#">Logout</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="fieldSetDiv">
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <div>
+            <label for="email">Email</label><br>
+            <input id="email" type="email" placeholder="Inserisci email..." [(ngModel)]="userLogin.email" #email="ngModel" name="email">
+        </div>
+        <div>
+            <label for="password">Password </label><br>
+            <input id="password" type="password" placeholder="Inserire password" [(ngModel)]="userLogin.password" name="password" #password="ngModel" required="required">
+        </div>
+        <div>
+            Non hai un account? <a href="#">Registrati</a>
+        </div>
+        <div>
+            <button type="submit" [disabled]="myForm.form.invalid"> Accedi </button>
+        </div>
+    </form>
+</div>

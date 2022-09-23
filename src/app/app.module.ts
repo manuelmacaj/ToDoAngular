@@ -9,6 +9,9 @@ import { ShowToDoComponent } from './show-to-do/show-to-do.component';
 import { ToDoInsertComponent } from './to-do-insert/to-do-insert.component';
 import { ToDoDetailComponent } from './to-do-detail/to-do-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs'
 
 
 @NgModule({
@@ -17,13 +20,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ToDoInsertComponent,
     ShowToDoComponent,
     ToDoDetailComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
-    FormsModule, 
-    HttpClientModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule, BrowserAnimationsModule, MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

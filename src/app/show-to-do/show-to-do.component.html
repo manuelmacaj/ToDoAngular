@@ -1,3 +1,6 @@
+<div>
+    <h1>ToDoApp - ToDo List</h1>
+</div>
 <nav>
     <ul class="navList">
         <li class="elemListNav">
@@ -7,7 +10,7 @@
             <a class="activeElemNav" routerLink="/todos">ToDo List</a>
         </li>
         <li class="elemListNav">
-            <a class="aListNav" href="#">Login</a>
+            <a class="aListNav" routerLink="/login">Login</a>
         </li>
         <li class="elemListNav">
             <a class="aListNav" href="#">Logout</a>
@@ -15,11 +18,48 @@
     </ul>
 </nav>
 
-<ul class="ulListTodos">
+<mat-tab-group mat-align-tabs="center" dynamicHeight>
+    <mat-tab label="All todo">
+        <ul class="ulListTodos">
+            <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
+                <div class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
+                    [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
+                    <p>ID: {{todo.idTodo}}</p>
+                    <p>To-Do: {{todo.toDoText}}</p>
+                </div>
+            </li>
+        </ul>
+    </mat-tab>
+    <mat-tab label="ToDo">
+        <ul class="ulListTodos">
+            <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
+                <div *ngIf="!todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
+                    [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
+                    <p>ID: {{todo.idTodo}}</p>
+                    <p>To-Do: {{todo.toDoText}}</p>
+                </div>
+            </li>
+        </ul>
+    </mat-tab>
+    <mat-tab label="Completed">
+        <ul class="ulListTodos">
+            <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
+                <div *ngIf="todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
+                    [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
+                    <p>ID: {{todo.idTodo}}</p>
+                    <p>To-Do: {{todo.toDoText}}</p>
+                </div>
+            </li>
+        </ul>
+    </mat-tab>
+</mat-tab-group>
+
+<!-- <ul class="ulListTodos">
     <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
-        <div class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}" [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
+        <div class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
+            [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
             <p>ID: {{todo.idTodo}}</p>
             <p>To-Do: {{todo.toDoText}}</p>
         </div>
     </li>
-</ul>
+</ul> -->

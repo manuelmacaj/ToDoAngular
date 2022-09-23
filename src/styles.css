@@ -59,3 +59,8 @@ body {
     transition: 0.5s;
 }
 
+h1 {
+    text-align: center;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
