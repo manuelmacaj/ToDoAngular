@@ -17,7 +17,7 @@ div {
 }
 
 input[type=text],
-input[type="datetime-local"] {
+input[type="datetime"] {
     margin: 5px;
     font-weight: bold;
     color: black;

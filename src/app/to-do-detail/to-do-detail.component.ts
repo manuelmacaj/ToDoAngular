@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ModuleWithComponentFactories, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToDoService } from '../to-do.service';
 import { ToDoElem } from '../Interfaces/toDoInterface';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-to-do-detail',
@@ -17,6 +16,7 @@ export class ToDoDetailComponent implements OnInit {
     toDoText: '',
     currentTime: '',
   };
+
   todoStatus = [true, false];
   checkStatus: boolean = false
 
@@ -30,7 +30,8 @@ export class ToDoDetailComponent implements OnInit {
     const ID = Number(this.route.snapshot.paramMap.get('idTodo'));
     this.todoService.getToDoByID(ID).subscribe(data => {
       this.toDoSelected = data;
-      this.checkStatus = this.toDoSelected.fatto!
+      this.checkStatus = this.toDoSelected.fatto!;
+      this.toDoSelected.currentTime = new Date(this.toDoSelected.currentTime).toISOString().split('T')[0];
     })
   }
   goBack() { // funzione per tornare alla pagina precedente
