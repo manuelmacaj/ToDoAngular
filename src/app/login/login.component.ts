@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { LoginForm } from '../Interfaces/UserInterface';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -14,17 +16,20 @@ export class LoginComponent implements OnInit {
     password: ''
   })
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private dialog: MatDialog) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onSubmit() {
-    this.authService.login(this.userLogin).subscribe(data => {
-      console.log(data)
-    })
+    this.authService.login(this.userLogin)
   }
+  
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    
+    dialogConfig.disableClose = true; // l'unico modo per chiudere la finestra di dialogo è tramite 
+    dialogConfig.autoFocus = true;
 
-
+    this.dialog.open(RegisterComponent, dialogConfig) // apro il dialog specificando il Component e le configurazioni
+  }
 }
-

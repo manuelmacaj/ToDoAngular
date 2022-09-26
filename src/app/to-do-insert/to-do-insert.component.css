@@ -1,4 +1,4 @@
-button {
+/* button {
     margin: 5px;
     padding: 10px;
     width: 5%;
@@ -14,7 +14,7 @@ button {
 
 button:hover {
     background-color: #bbb;
-}
+} */
 
 .insertToDO {
     background-color: green;

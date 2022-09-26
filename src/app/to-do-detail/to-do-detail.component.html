@@ -1,3 +1,5 @@
+<h1>ToDoApp - Detail ToDo</h1>
+
 <nav>
     <ul class="navList">
         <li class="elemListNav">
@@ -34,15 +36,12 @@
         </li>
         <li class="elemTodoDetail">
             <label for="trueFalse">Completato:</label><br>
-            <select *ngIf="this.checkStatus == false" name="trueFalse" [(ngModel)]="this.checkStatus">
-                <option *ngFor="let status of todoStatus" [value]="status">{{status}}</option>
-            </select><br>
-            <select *ngIf="this.checkStatus == true" name="trueFalse" [(ngModel)]="this.checkStatus" disabled>
-                <option *ngFor="let status of todoStatus" [value]="status">{{status}}</option>
+            <select name="trueFalse" [(ngModel)]="this.checkStatus">
+                <option [disabled]="toDoSelected.fatto" *ngFor="let status of todoStatus" [value]="status">{{status}}</option>
             </select><br>
         </li>
     </ul>
-    <button class="btnSingleToDo" (click)="goBack()">Go Back</button>
-    <button class="btnSingleToDo" (click)="deleteTodo()">Delete</button>
-    <button class="btnSingleToDo" *ngIf="this.toDoSelected.fatto == false" (click)="updateTodo()">Update</button>
+    <button mat-raised-button class="btnSingleToDo" (click)="goBack()">Go Back</button>
+    <button mat-raised-button class="btnSingleToDo" color="warn" (click)="deleteTodo()">Delete</button>
+    <button mat-raised-button class="btnSingleToDo" color="primary" *ngIf="this.toDoSelected.fatto == false" (click)="updateTodo()">Update</button>
 </div>

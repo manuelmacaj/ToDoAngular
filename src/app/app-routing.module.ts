@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ShowToDoComponent } from './show-to-do/show-to-do.component';
@@ -9,8 +10,8 @@ import { ToDoInsertComponent } from './to-do-insert/to-do-insert.component';
 const routes: Routes = [
   { path: '', redirectTo: "/insert", pathMatch: "full" },
   { path: "insert", component: ToDoInsertComponent },
-  { path: "todos", component: ShowToDoComponent },
-  { path: "detail/:idTodo", component: ToDoDetailComponent },
+  { path: "todos", component: ShowToDoComponent, canActivate: [AuthGuard] },
+  { path: "detail/:idTodo", component: ToDoDetailComponent},
   { path: "login", component: LoginComponent },
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }
 ];

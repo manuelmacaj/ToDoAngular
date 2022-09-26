@@ -58,27 +58,5 @@ input[type=text]:focus {
 }
 
 .btnSingleToDo {
-    background: linear-gradient(to right, #196BCA, #6433E0);
-    background-color: #196BCA;
-    color: #fff;
-    font-family: Arial;
-    font-size: 18px;
-    font-weight: 800;
-    font-style: normal;
-    text-decoration: none;
-    padding: 14px 15px;
-    border: 2px solid #000;
-    border-radius: 17px;
-    display: inline-block;
-    box-shadow: 0px 0px 10px 0px rgba(27.4859619140625, 26.60171468123745, 26.60171468123745, 0.5);
-}
-
-.btnSingleToDo:hover {
-    background: linear-gradient(to right, #5d8d39, #595171);
-    -webkit-transition: 0.5s;
-    transition: 1.5s;
-}
-
-.btnSingleToDo:active {
-    transform: scale(0.95);
+    margin-left: 5px;
 }

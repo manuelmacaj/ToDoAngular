@@ -29,7 +29,10 @@
             <input id="password" type="password" placeholder="Inserire password" [(ngModel)]="userLogin.password" name="password" #password="ngModel" required="required">
         </div>
         <div>
-            Non hai un account? <a href="#">Registrati</a>
+            <p>
+                Non hai un account? 
+                <button mat-button type="button" (click)="openDialog()">Registrati</button>
+            </p>
         </div>
         <div>
             <button type="submit" [disabled]="myForm.form.invalid"> Accedi </button>

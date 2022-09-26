@@ -20,6 +20,8 @@
 <div class="insertToDO">
     <ng-container>
         <input type="text" placeholder="Aggiungi un ToDo" [(ngModel)]="textTodo" name="textTodo">
-        <button (click)="takeToDo()">+</button>
+        <button mat-fab color="warn" (click)="takeToDo()">
+            <mat-icon fontIcon="add"></mat-icon>
+        </button>
     </ng-container>
 </div>

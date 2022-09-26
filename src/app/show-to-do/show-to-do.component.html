@@ -38,7 +38,7 @@
         <ul class="ulListTodos">
             <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
                 <div *ngIf="!todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
-                    [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
+                    [ngStyle]="{'background-color':'#FF8A8A'}">
                     <p>ID: {{todo.idTodo}}</p>
                     <p>To-Do: {{todo.toDoText}}</p>
                 </div>
@@ -50,7 +50,7 @@
         <ul class="ulListTodos">
             <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
                 <div *ngIf="todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
-                    [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
+                    [ngStyle]="{'background-color': '#98FB98'}">
                     <p>ID: {{todo.idTodo}}</p>
                     <p>To-Do: {{todo.toDoText}}</p>
                 </div>
