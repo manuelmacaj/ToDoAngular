@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowToDoComponent } from './show-to-do.component';
+import { ShowsToDoComponent } from './shows-to-do.component';
 
-describe('ShowToDoComponent', () => {
-  let component: ShowToDoComponent;
-  let fixture: ComponentFixture<ShowToDoComponent>;
+describe('ShowsToDoComponent', () => {
+  let component: ShowsToDoComponent;
+  let fixture: ComponentFixture<ShowsToDoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowToDoComponent ]
+      declarations: [ ShowsToDoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ShowToDoComponent);
+    fixture = TestBed.createComponent(ShowsToDoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

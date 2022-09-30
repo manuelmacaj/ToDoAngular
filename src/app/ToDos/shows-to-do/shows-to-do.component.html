@@ -1,5 +1,5 @@
 <div>
-    <h1>ToDoApp - ToDo List</h1>
+    <h1>ToDoApp - ToDo List di {{nameUser}}</h1>
 </div>
 <!--Nav-->
 <nav>
@@ -25,10 +25,10 @@
     <mat-tab label="All todo">
         <ul class="ulListTodos">
             <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
-                <div class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
+                <div class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
                     [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
-                    <p>ID: {{todo.idTodo}}</p>
-                    <p>To-Do: {{todo.toDoText}}</p>
+                    <p>ID: {{todo.id}}</p>
+                    <p>To-Do: {{todo.todo_text}}</p>
                 </div>
             </li>
         </ul>
@@ -37,10 +37,10 @@
     <mat-tab label="ToDo">
         <ul class="ulListTodos">
             <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
-                <div *ngIf="!todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
+                <div *ngIf="!todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
                     [ngStyle]="{'background-color':'#FF8A8A'}">
-                    <p>ID: {{todo.idTodo}}</p>
-                    <p>To-Do: {{todo.toDoText}}</p>
+                    <p>ID: {{todo.id}}</p>
+                    <p>To-Do: {{todo.todo_text}}</p>
                 </div>
             </li>
         </ul>
@@ -49,10 +49,10 @@
     <mat-tab label="Completati">
         <ul class="ulListTodos">
             <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
-                <div *ngIf="todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.idTodo}}"
+                <div *ngIf="todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
                     [ngStyle]="{'background-color': '#98FB98'}">
-                    <p>ID: {{todo.idTodo}}</p>
-                    <p>To-Do: {{todo.toDoText}}</p>
+                    <p>ID: {{todo.id}}</p>
+                    <p>To-Do: {{todo.todo_text}}</p>
                 </div>
             </li>
         </ul>

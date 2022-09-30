@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ToDoElem } from '../Interfaces/toDoInterface';
-import { ToDoService } from '../to-do.service';
+import { ToDoElem } from 'src/app/Interfaces/toDoInterface';
+import { ToDoService } from 'src/app/to-do.service';
 
 @Component({
-  selector: 'app-show-to-do',
-  templateUrl: './show-to-do.component.html',
-  styleUrls: ['./show-to-do.component.css']
+  selector: 'app-shows-to-do',
+  templateUrl: './shows-to-do.component.html',
+  styleUrls: ['./shows-to-do.component.css']
 })
-export class ShowToDoComponent implements OnInit {
+export class ShowsToDoComponent implements OnInit {
   toDoList: ToDoElem[] = [];
+  nameUser = (localStorage.getItem("name"))
 
   constructor(private toDoService: ToDoService) { }
 
@@ -22,7 +23,7 @@ export class ShowToDoComponent implements OnInit {
   getAllToDoList() { // funzione per il prelevamento di tutti gli elementi dal database
     this.toDoService.getAllToDoList().subscribe(data => {
       console.log(data);
-      this.toDoList = data["ToDoALL"];
+      this.toDoList = data
       this.toDoList.reverse();
     })
   }

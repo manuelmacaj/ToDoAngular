@@ -5,28 +5,29 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShowToDoComponent } from './show-to-do/show-to-do.component';
-import { ToDoInsertComponent } from './to-do-insert/to-do-insert.component';
-import { ToDoDetailComponent } from './to-do-detail/to-do-detail.component';
+import { ToDoInsertComponent } from 'src/app/ToDos/to-do-insert/to-do-insert.component';
+import { ToDoDetailComponent } from './ToDos/to-do-detail/to-do-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Auth/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs'
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from '@angular/material/input'
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './Auth/register/register.component'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AuthInterceptor } from './authConfig.interceptor';
+import { ShowsToDoComponent } from './ToDos/shows-to-do/shows-to-do.component';
+import { UserService } from './config.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDoInsertComponent,
-    ShowToDoComponent,
+    ShowsToDoComponent,
     ToDoDetailComponent,
     PageNotFoundComponent,
     LoginComponent,
@@ -47,8 +48,8 @@ import { AuthInterceptor } from './authConfig.interceptor';
     MatIconModule,
     MatListModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
+  providers: [UserService, {
+    provide: [HTTP_INTERCEPTORS],
     useClass: AuthInterceptor,
     multi: true
   }],

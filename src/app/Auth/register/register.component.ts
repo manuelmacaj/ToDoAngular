@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { CustomValidators } from '../custom-validators';
-import { RegisterForm } from '../Interfaces/UserInterface';
+import { AuthService } from 'src/app/auth.service';
+import { CustomValidators } from 'src/app/custom-validators';
+import { RegisterForm } from 'src/app/Interfaces/UserInterface';
 
 
 @Component({

@@ -1,7 +1,7 @@
-import { DatePipe, formatDate } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
-import { ToDoElem } from '../Interfaces/toDoInterface';
-import { ToDoService } from '../to-do.service';
+import { ToDoElemIns } from 'src/app/Interfaces/toDoInterface';
+import { ToDoService } from 'src/app/to-do.service'; 
 
 @Component({
   selector: 'app-to-do-insert',
@@ -12,10 +12,10 @@ export class ToDoInsertComponent implements OnInit {
   textTodo: string = '';
   lengthTodo: Number = 0;
 
-  toDoElem: ToDoElem = {
-    idTodo: Number(999),
-    toDoText: '',
-    currentTime: '',
+  toDoElem: ToDoElemIns = {
+    todo_text: '',
+    current_time: '',
+
   }
   constructor(private toDoService: ToDoService) { }
 
@@ -28,13 +28,12 @@ export class ToDoInsertComponent implements OnInit {
     }
     this.costruisciToDo()
     this.toDoService.sendToDb(this.toDoElem)
-      .subscribe(_ => alert("ToDo creato con successo!"), error => console.log(error))
     this.textTodo = ""
   }
 
   costruisciToDo() {
-    this.toDoElem.toDoText = this.textTodo;
-    this.toDoElem.currentTime = new Date().toISOString();
+    this.toDoElem.todo_text = this.textTodo;
+    this.toDoElem.current_time = new Date().toISOString();
     this.toDoElem.fatto = false; // di default è false
   }
 }

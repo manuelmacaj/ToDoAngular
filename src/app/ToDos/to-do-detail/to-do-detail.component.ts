@@ -1,8 +1,8 @@
 import { Component, ModuleWithComponentFactories, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { ToDoService } from '../to-do.service';
-import { ToDoElem } from '../Interfaces/toDoInterface';
+import { ToDoService } from 'src/app/to-do.service';
+import { ToDoElem } from 'src/app/Interfaces/toDoInterface';
 
 @Component({
   selector: 'app-to-do-detail',
@@ -12,9 +12,9 @@ import { ToDoElem } from '../Interfaces/toDoInterface';
 export class ToDoDetailComponent implements OnInit {
 
   toDoSelected: ToDoElem = {
-    idTodo: 0,
-    toDoText: '',
-    currentTime: '',
+    id: 0,
+    todo_text: '',
+    current_time: '',
   };
 
   todoStatus = [true, false];
@@ -27,11 +27,11 @@ export class ToDoDetailComponent implements OnInit {
     this.getToDoByID();
   }
   getToDoByID() { // funzione di prelevamento di un ToDo, in base all'ID 
-    const ID = Number(this.route.snapshot.paramMap.get('idTodo'));
+    const ID = Number(this.route.snapshot.paramMap.get('id'));
     this.todoService.getToDoByID(ID).subscribe(data => {
       this.toDoSelected = data;
       this.checkStatus = this.toDoSelected.fatto!;
-      this.toDoSelected.currentTime = new Date(this.toDoSelected.currentTime).toISOString().split('T')[0];
+      this.toDoSelected.current_time = new Date(this.toDoSelected.current_time).toISOString().split('T')[0];
     })
   }
   goBack() { // funzione per tornare alla pagina precedente
@@ -45,7 +45,7 @@ export class ToDoDetailComponent implements OnInit {
     })
   }
   deleteTodo() { // funzione per la cancellazione di un todo
-    this.todoService.deleteTodo(this.toDoSelected.idTodo).subscribe(data => {
+    this.todoService.deleteTodo(this.toDoSelected.id).subscribe(data => {
       alert(data["message"]);
       this.goBack();
     })

@@ -22,16 +22,16 @@
     <ul>
         <li class="elemTodoDetail">
             <label>Test</label><br>
-            <input class="disabledField" type="text" [ngModel]="toDoSelected.idTodo" disabled>
+            <input class="disabledField" type="text" [ngModel]="toDoSelected.id" disabled>
         </li>
         <li class="elemTodoDetail">
             <label>Todo:</label><br>
             <input [ngClass]="toDoSelected.fatto == false ? 'enabledField' : 'disabledField'" type="text"
-                [(ngModel)]="toDoSelected.toDoText" [disabled]="toDoSelected.fatto == true">
+                [(ngModel)]="toDoSelected.todo_text" [disabled]="toDoSelected.fatto == true">
         </li>
         <li class="elemTodoDetail">
             <label for="currentTime">Data creazione:</label><br>
-            <input name="currentTime" class="disabledField" type="datetime" [ngModel]="toDoSelected.currentTime"
+            <input name="currentTime" class="disabledField" type="datetime" [ngModel]="toDoSelected.current_time"
                 disabled>
         </li>
         <li class="elemTodoDetail">

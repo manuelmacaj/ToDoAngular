@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AuthService } from '../auth.service';
-import { LoginForm } from '../Interfaces/UserInterface';
+import { AuthService } from 'src/app/auth.service';
+import { LoginForm } from 'src/app/Interfaces/UserInterface';
 import { RegisterComponent } from '../register/register.component';
 
 @Component({
