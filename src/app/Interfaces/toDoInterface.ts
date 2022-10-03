@@ -10,3 +10,7 @@ export interface ToDoElemIns { // interfaccia per ogni ToDo
     current_time: string,
     fatto?: boolean,
 }
+export interface ToDoUpdate { // interfaccia per ogni ToDo
+    todo_text: string,
+    fatto?: boolean,
+}

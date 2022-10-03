@@ -10,12 +10,13 @@
         <li class="elemListNav">
             <a class="activeElemNav" routerLink="/todos">ToDo List</a>
         </li>
-        <li class="elemListNav">
+        <li *ngIf="!auth.isLoggedIn" class="elemListNav">
             <a class="aListNav" routerLink="/login">Login</a>
         </li>
-        <li class="elemListNav">
-            <a class="aListNav" href="#">Logout</a>
+        <li *ngIf="auth.isLoggedIn" class="elemListNav">
+            <a class="aListNav" (click)="logout()">Logout</a>
         </li>
+
     </ul>
 </nav>
 
@@ -23,15 +24,20 @@
 <mat-tab-group mat-align-tabs="center" dynamicHeight>
     <!--Mat Tab di tutti i todo completati e non-->
     <mat-tab label="All todo">
-        <ul class="ulListTodos">
-            <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
-                <div class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
-                    [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
-                    <p>ID: {{todo.id}}</p>
-                    <p>To-Do: {{todo.todo_text}}</p>
-                </div>
-            </li>
-        </ul>
+        <div *ngIf="toDoList.length>0">
+            <ul class="ulListTodos">
+                <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
+                    <div class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
+                        [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
+                        <p>ID: {{todo.id}}</p>
+                        <p>To-Do: {{todo.todo_text}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="toDoList.length==0">
+            <p>Non hai To-Do. Inizia a crearli</p>
+        </div>
     </mat-tab>
     <!--Mat Tab di tutti i todo da svolgere -->
     <mat-tab label="ToDo">

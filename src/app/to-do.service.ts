@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { UserService } from './config.service';
+import { AuthService } from './auth.service';
 import { API_URL, TODOS } from './evn';
 
-import { ToDoElem, ToDoElemIns } from './Interfaces/toDoInterface';
+import { ToDoElem, ToDoElemIns, ToDoUpdate } from './Interfaces/toDoInterface';
 
 // https://angular.io/guide/http
 
@@ -15,11 +15,11 @@ import { ToDoElem, ToDoElemIns } from './Interfaces/toDoInterface';
 })
 export class ToDoService {
 
-  constructor(private http: HttpClient, public router: Router) { }
+  constructor(private http: HttpClient, public router: Router, private auth: AuthService) { }
 
   sendToDb(newElem: ToDoElemIns) { // POST method per inserire il un nuovo ToDo nel DB remoto
-    if (localStorage.getItem("access_token")) {
-      let headers_object = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("access_token"));
+    if (this.auth.isLoggedIn) {
+      let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
       let options = { headers: headers_object }
       const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`;
       return this.http.post<any>(url, newElem, options).subscribe(_ => {
@@ -33,27 +33,35 @@ export class ToDoService {
   }
 
   getAllToDoList(): Observable<any> { // GET method che restituisce tutti i ToDo salvati sul DB remoto
-    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("access_token"));
+    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
     let options = { headers: headers_object }
     const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`
     return this.http.get<any>(url, options).pipe(catchError(this.handleError));
   }
 
   getToDoByID(idTodo: number): Observable<ToDoElem> { // GET method che restituisce un ToDo selezionato dall'utente
-    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("access_token"));
+    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
     let options = { headers: headers_object }
     const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/${idTodo}/`
     return this.http.get<ToDoElem>(url, options).pipe(retry(3), catchError(this.handleError));
   }
 
   updateTodo(updatedElem: ToDoElem): Observable<any> { // PATCH method 
-    const url = ``
-    return this.http.patch<any>(url, updatedElem).pipe(retry(3), catchError(this.handleError));
+    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
+    let options = { headers: headers_object }
+    const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/${updatedElem.id}/`
+    const update_Elem: ToDoUpdate = {
+      todo_text: updatedElem.todo_text,
+      fatto: updatedElem.fatto
+    };
+    return this.http.patch<any>(url, update_Elem, options).pipe(retry(3), catchError(this.handleError));
   }
 
   deleteTodo(idTodo: number): Observable<any> { // DELETE method
-    const url = `${API_URL}${TODOS}/${idTodo}`;
-    return this.http.delete<any>(url).pipe(retry(3), catchError(this.handleError));
+    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
+    let options = { headers: headers_object }
+    const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/${idTodo}/`
+    return this.http.delete<any>(url, options).pipe(retry(3), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

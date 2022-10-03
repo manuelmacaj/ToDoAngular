@@ -20,7 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AuthInterceptor } from './authConfig.interceptor';
 import { ShowsToDoComponent } from './ToDos/shows-to-do/shows-to-do.component';
-import { UserService } from './config.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -46,9 +46,10 @@ import { UserService } from './config.service';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule
+    MatListModule, 
+    MatSnackBarModule
   ],
-  providers: [UserService, {
+  providers: [{
     provide: [HTTP_INTERCEPTORS],
     useClass: AuthInterceptor,
     multi: true

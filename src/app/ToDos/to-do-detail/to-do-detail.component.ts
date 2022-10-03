@@ -1,8 +1,10 @@
-import { Component, ModuleWithComponentFactories, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToDoService } from 'src/app/to-do.service';
 import { ToDoElem } from 'src/app/Interfaces/toDoInterface';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-to-do-detail',
@@ -20,7 +22,7 @@ export class ToDoDetailComponent implements OnInit {
   todoStatus = [true, false];
   checkStatus: boolean = false
 
-  constructor(private route: ActivatedRoute, private location: Location, private todoService: ToDoService) {
+  constructor(private route: ActivatedRoute, private location: Location, private todoService: ToDoService, private snackBar: MatSnackBar, protected auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -39,15 +41,24 @@ export class ToDoDetailComponent implements OnInit {
   }
   updateTodo() { // funzione per l'aggiornamento di un todo
     this.toDoSelected.fatto = this.checkStatus;
-    this.todoService.updateTodo(this.toDoSelected).subscribe(data => {
-      alert(data["message"]);
+    this.todoService.updateTodo(this.toDoSelected).subscribe(_ => {
+      this.snackBarView("Aggiornamento eseguito con successo", "Ok");
       this.goBack();
     })
   }
   deleteTodo() { // funzione per la cancellazione di un todo
-    this.todoService.deleteTodo(this.toDoSelected.id).subscribe(data => {
-      alert(data["message"]);
+    this.todoService.deleteTodo(this.toDoSelected.id).subscribe(_ => {
+      this.snackBarView("Cancellazione eseguito con successo ", "Ok");
       this.goBack();
     })
+  }
+  logout() {
+    this.auth.logout()
+  }
+
+  private snackBarView(text: string, action: string) {
+    this.snackBar.open(text, action, {
+      duration: 3000, horizontalPosition:'left'
+    });
   }
 }

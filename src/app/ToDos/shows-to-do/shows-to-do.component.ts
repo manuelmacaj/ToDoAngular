@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 import { ToDoElem } from 'src/app/Interfaces/toDoInterface';
 import { ToDoService } from 'src/app/to-do.service';
 
@@ -11,7 +12,7 @@ export class ShowsToDoComponent implements OnInit {
   toDoList: ToDoElem[] = [];
   nameUser = (localStorage.getItem("name"))
 
-  constructor(private toDoService: ToDoService) { }
+  constructor(private toDoService: ToDoService, protected auth: AuthService) { }
 
   ngOnInit(): void {
     this.getAllToDoList();
@@ -22,9 +23,11 @@ export class ShowsToDoComponent implements OnInit {
 
   getAllToDoList() { // funzione per il prelevamento di tutti gli elementi dal database
     this.toDoService.getAllToDoList().subscribe(data => {
-      console.log(data);
       this.toDoList = data
       this.toDoList.reverse();
     })
+  }
+  logout() {
+    this.auth.logout()
   }
 }

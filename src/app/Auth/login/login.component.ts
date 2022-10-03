@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     password: ''
   })
 
-  constructor(private authService: AuthService, private dialog: MatDialog) { }
+  constructor(protected authService: AuthService, private dialog: MatDialog) { }
 
   ngOnInit(): void { }
 

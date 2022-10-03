@@ -9,11 +9,9 @@
         <li class="elemListNav">
             <a class="aListNav" routerLink="/todos">ToDo List</a>
         </li>
-        <li class="elemListNav">
+
+        <li *ngIf="!authService.isLoggedIn" class="elemListNav">
             <a class="activeElemNav" routerLink="/login">Login</a>
-        </li>
-        <li class="elemListNav">
-            <a class="aListNav" href="#">Logout</a>
         </li>
     </ul>
 </nav>

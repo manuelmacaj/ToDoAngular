@@ -1,9 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { API_URL } from './evn';
-import { LoginForm, RegisterForm, User } from './Interfaces/UserInterface';
+import { LoginForm, RegisterForm } from './Interfaces/UserInterface';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { LoginForm, RegisterForm, User } from './Interfaces/UserInterface';
 })
 export class AuthService {
   endpoint = `${API_URL}`
-  constructor(private http: HttpClient, public router: Router) { }
+  constructor(private http: HttpClient, public router: Router, private snackBar: MatSnackBar) { }
 
   register(user: RegisterForm): Observable<any> { // registrazione utente
     let url = `${this.endpoint}/sign-up/`;
@@ -21,11 +22,9 @@ export class AuthService {
   login(userLogin: LoginForm) { // login utente
     let url = `${this.endpoint}/sign-in/`;
     return this.http.post<any>(url, userLogin).subscribe((res: any) => {
-      localStorage.removeItem('access_token')
       localStorage.setItem('access_token', res["access_token"]); // alloco l'access token nel localStorage
       this.getUser(res["id"]).subscribe((data) => { // prelevo le informazioni dell'utente
-        console.table(data)
-        alert("Accesso eseguito")
+        this.snackBarView("Accesso eseguito", "Ok")
         // local storage
         localStorage.setItem("id", String(data["id"]));
         localStorage.setItem("name", String(data["name"]));
@@ -36,16 +35,24 @@ export class AuthService {
     });
   }
 
-  private getUser(user_id: number): Observable<any> {
+  private getUser(user_id: number): Observable<any> { // prelevo l'info utente
     let url = `${this.endpoint}/user/${user_id}/`;
     return this.http.get(url).pipe(catchError(this.handleError));
   }
-  getToken() {
+
+  getToken() { // restituisco il token
     return localStorage.getItem('access_token');
   }
-  get isLoggedIn() {
+
+  get isLoggedIn() { // verifico se l'utente è loggato
     let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;
+  }
+
+  logout() {
+    localStorage.clear(); // pulisco il localStorage 
+    this.router.navigate(['/login']); // riporto l'utente alla finestra di login 
+    this.snackBarView("Logout completed.", "Ok")
   }
 
   private handleError(error: HttpErrorResponse) { // errori
@@ -61,6 +68,12 @@ export class AuthService {
     }
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
+
+  private snackBarView(text: string, action: string) {
+    this.snackBar.open(text, action, {
+      duration: 3000, horizontalPosition:'left'
+    });
   }
 }
 

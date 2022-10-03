@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { CustomValidators } from 'src/app/custom-validators';
@@ -31,13 +32,11 @@ export class RegisterComponent implements OnInit {
     [CustomValidators.MatchValidator('password', 'confirmPassword')]
   )
 
-  constructor(private auth: AuthService, private router: Router, private dialogRef: MatDialogRef<RegisterComponent>) { }
+  constructor(private auth: AuthService, private router: Router, private dialogRef: MatDialogRef<RegisterComponent>, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void { }
 
   onSubmit() {
-    console.log(this.registrazioneFormBuilder)
-    console.log(this.registrazioneFormBuilder.value)
 
     let registerForm: RegisterForm = {
       name: this.registrazioneFormBuilder.value.name!,
@@ -45,11 +44,16 @@ export class RegisterComponent implements OnInit {
       email: this.registrazioneFormBuilder.value.email!,
       password: this.registrazioneFormBuilder.value.password!,
     }
-    this.auth.register(registerForm).subscribe(data => {
-      alert("registrazione completata");
-      this.router.navigate(['/insert']);
+    this.auth.register(registerForm).subscribe(_ => {
+      this.snackBarView("Registrazione completata. ora Accedi", "Ok");
       this.dialogRef.close() // se la registrazione ha avuto successo, chiudo il dialog corrente
     })
+  }
+
+  private snackBarView(text: string, action: string) {
+    this.snackBar.open(text, action, {
+      duration: 3000, horizontalPosition: 'left'
+    });
   }
 
   //----------
