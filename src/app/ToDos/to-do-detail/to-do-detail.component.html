@@ -1,44 +1,57 @@
-<h1>ToDoApp - Detail ToDo</h1>
-
-<nav>
-    <ul class="navList">
-        <li class="elemListNav">
-            <a class="aListNav" routerLink="/insert">Crea ToDo</a>
-        </li>
-        <li class="elemListNav">
-            <a class="aListNav" routerLink="/todos">ToDo List</a>
-        </li>
-        <li *ngIf="auth.isLoggedIn" class="elemListNav">
-            <a class="aListNav" (click)="logout()">Logout</a>
-        </li>
-    </ul>
-</nav>
-
-<div>
-    <span>Modifica il seguente ToDo, specificando anche se il seguente task è stato completato!</span>
-    <ul>
-        <li class="elemTodoDetail">
-            <label>ID To-Do:</label><br>
-            <input class="disabledField" type="text" [ngModel]="toDoSelected.id" disabled>
-        </li>
-        <li class="elemTodoDetail">
-            <label>Todo:</label><br>
-            <input [ngClass]="toDoSelected.fatto == false ? 'enabledField' : 'disabledField'" type="text"
-                [(ngModel)]="toDoSelected.todo_text" [disabled]="toDoSelected.fatto == true">
-        </li>
-        <li class="elemTodoDetail">
-            <label for="currentTime">Data creazione:</label><br>
-            <input name="currentTime" class="disabledField" type="datetime" [ngModel]="toDoSelected.current_time"
-                disabled>
-        </li>
-        <li class="elemTodoDetail">
-            <label for="trueFalse">Completato:</label><br>
-            <select name="trueFalse" [(ngModel)]="this.checkStatus">
-                <option [disabled]="toDoSelected.fatto" *ngFor="let status of todoStatus" [value]="status">{{status}}</option>
-            </select><br>
-        </li>
-    </ul>
-    <button mat-raised-button class="btnSingleToDo" (click)="goBack()">Go Back</button>
-    <button mat-raised-button class="btnSingleToDo" color="warn" (click)="deleteTodo()">Delete</button>
-    <button mat-raised-button class="btnSingleToDo" color="primary" *ngIf="this.toDoSelected.fatto == false" (click)="updateTodo()">Update</button>
-</div>
+<mat-drawer-container autosize>
+    <mat-toolbar>
+        <button type="button" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>ToDoApp - Detail</span>
+    </mat-toolbar>
+    <mat-drawer class="sidenav-drawer" #drawer mode="over">
+        <mat-toolbar>
+            <span>Menu</span>
+        </mat-toolbar>
+        <nav>
+            <ul class="navList">
+                <li class="elemListNav">
+                    <a class="aListNav" routerLink="/insert">Crea ToDo</a>
+                </li>
+                <li class="elemListNav">
+                    <a class="aListNav" routerLink="/todos">ToDo List</a>
+                </li>
+                <li *ngIf="auth.isLoggedIn" class="elemListNav">
+                    <a class="aListNav" (click)="logout()">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </mat-drawer>
+    <div>
+        <span>Modifica il seguente ToDo, specificando anche se il seguente task è stato completato!</span>
+        <ul>
+            <li class="elemTodoDetail">
+                <label>ID To-Do:</label><br>
+                <input class="disabledField" type="text" [ngModel]="toDoSelected.id" disabled>
+            </li>
+            <li class="elemTodoDetail">
+                <label>Todo:</label><br>
+                <input [ngClass]="toDoSelected.fatto == false ? 'enabledField' : 'disabledField'" type="text"
+                    [(ngModel)]="toDoSelected.todo_text" [disabled]="toDoSelected.fatto == true">
+            </li>
+            <li class="elemTodoDetail">
+                <label for="currentTime">Data creazione:</label><br>
+                <input name="currentTime" class="disabledField" type="datetime" [ngModel]="toDoSelected.current_time"
+                    disabled>
+            </li>
+            <li class="elemTodoDetail">
+                <label for="trueFalse">Completato:</label><br>
+                <select name="trueFalse" [(ngModel)]="this.checkStatus">
+                    <option [disabled]="toDoSelected.fatto" *ngFor="let status of todoStatus" [value]="status">
+                        {{status}}
+                    </option>
+                </select><br>
+            </li>
+        </ul>
+        <button mat-raised-button class="btnSingleToDo" (click)="goBack()">Go Back</button>
+        <button mat-raised-button class="btnSingleToDo" color="warn" (click)="deleteTodo()">Delete</button>
+        <button mat-raised-button class="btnSingleToDo" color="primary" *ngIf="this.toDoSelected.fatto == false"
+            (click)="updateTodo()">Update</button>
+    </div>
+</mat-drawer-container>

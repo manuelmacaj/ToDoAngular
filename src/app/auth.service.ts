@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
-import { API_URL } from './evn';
+import { API_URL } from './env';
 import { LoginForm, RegisterForm } from './Interfaces/UserInterface';
 
 
@@ -21,18 +21,20 @@ export class AuthService {
 
   login(userLogin: LoginForm) { // login utente
     let url = `${this.endpoint}/sign-in/`;
-    return this.http.post<any>(url, userLogin).subscribe((res: any) => {
-      localStorage.setItem('access_token', res["access_token"]); // alloco l'access token nel localStorage
-      this.getUser(res["id"]).subscribe((data) => { // prelevo le informazioni dell'utente
-        this.snackBarView("Accesso eseguito", "Ok")
-        // local storage
-        localStorage.setItem("id", String(data["id"]));
-        localStorage.setItem("name", String(data["name"]));
-        localStorage.setItem("surname", String(data["surname"]));
-        localStorage.setItem("email", String(data["email"]))
-        this.router.navigate(['/']);
+    return this.http.post<any>(url, userLogin)
+      .pipe(catchError(this.handleError))
+      .subscribe((res: any) => {
+        localStorage.setItem('access_token', res["access_token"]); // alloco l'access token nel localStorage
+        this.getUser(res["id"]).subscribe((data) => { // prelevo le informazioni dell'utente
+          this.snackBarView("Accesso eseguito", "Ok")
+          // local storage
+          localStorage.setItem("id", String(data["id"]));
+          localStorage.setItem("name", String(data["name"]));
+          localStorage.setItem("surname", String(data["surname"]));
+          localStorage.setItem("email", String(data["email"]))
+          this.router.navigate(['/']);
+        });
       });
-    });
   }
 
   private getUser(user_id: number): Observable<any> { // prelevo l'info utente
@@ -54,8 +56,14 @@ export class AuthService {
     this.router.navigate(['/login']); // riporto l'utente alla finestra di login 
     this.snackBarView("Logout completed.", "Ok")
   }
+  snackBarView(text: string, action: string) {
+    this.snackBar.open(text, action, {
+      duration: 3000, horizontalPosition: 'left'
+    });
+  }
 
   private handleError(error: HttpErrorResponse) { // errori
+
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
       alert("Errore lato client")
@@ -63,17 +71,17 @@ export class AuthService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
+      if (error.status == 403) {
+        console.error(error.message)
+      }
+      else if (error.status == 401) { // errore 401: client non autorizzato
+        console.error(error.message)
+      }
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
     }
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
-  }
-
-  private snackBarView(text: string, action: string) {
-    this.snackBar.open(text, action, {
-      duration: 3000, horizontalPosition:'left'
-    });
   }
 }
 

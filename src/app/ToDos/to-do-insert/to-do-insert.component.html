@@ -1,27 +1,35 @@
-<div>
-    <h1>ToDoApp - Insert ToDo</h1>
-</div>
-<nav>
-    <ul class="navList">
-        <li class="elemListNav">
-            <a class="activeElemNav" routerLink="/insert">Crea ToDo</a>
-        </li>
-        <li class="elemListNav">
-            <a class="aListNav" routerLink="/todos">ToDo List</a>
-        </li>
-        <li *ngIf="!auth.isLoggedIn" class="elemListNav">
-            <a class="aListNav" routerLink="/login">Login</a>
-        </li>
-        <li *ngIf="auth.isLoggedIn" class="elemListNav">
-            <a class="aListNav" (click)="logout()">Logout</a>
-        </li>
-    </ul>
-</nav>
-<div class="insertToDO">
-    <ng-container>
-        <input type="text" placeholder="Aggiungi un ToDo" [(ngModel)]="textTodo" name="textTodo">
-        <button mat-fab color="warn" (click)="takeToDo()">
-            <mat-icon fontIcon="add"></mat-icon>
+<mat-drawer-container autosize>
+    <mat-toolbar>
+        <button type="button" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
         </button>
-    </ng-container>
-</div>
+        <span>ToDoApp - Insert ToDo</span>
+    </mat-toolbar>
+    <mat-drawer class="sidenav-drawer" #drawer mode="over">
+        <mat-toolbar>
+            <span>Menu</span>
+        </mat-toolbar>
+        <ul class="navList">
+            <li class="elemListNav">
+                <a class="activeElemNav" routerLink="/insert">Crea ToDo</a>
+            </li>
+            <li class="elemListNav">
+                <a class="aListNav" routerLink="/todos">ToDo List</a>
+            </li>
+            <li *ngIf="!auth.isLoggedIn" class="elemListNav">
+                <a class="aListNav" routerLink="/login">Login</a>
+            </li>
+            <li *ngIf="auth.isLoggedIn" class="elemListNav">
+                <a class="aListNav" (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    </mat-drawer>
+    <div class="insertToDO">
+        <ng-container>
+            <input type="text" placeholder="Aggiungi un ToDo" [(ngModel)]="textTodo" name="textTodo">
+            <button mat-fab color="warn" (click)="takeToDo()">
+                <mat-icon fontIcon="send"></mat-icon>
+            </button>
+        </ng-container>
+    </div>
+</mat-drawer-container>

@@ -21,6 +21,8 @@ import { MatListModule } from '@angular/material/list';
 import { AuthInterceptor } from './authConfig.interceptor';
 import { ShowsToDoComponent } from './ToDos/shows-to-do/shows-to-do.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -46,8 +48,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule, 
-    MatSnackBarModule
+    MatListModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatSidenavModule
   ],
   providers: [{
     provide: [HTTP_INTERCEPTORS],

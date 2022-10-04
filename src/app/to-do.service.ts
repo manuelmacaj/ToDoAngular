@@ -1,10 +1,11 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-import { API_URL, TODOS } from './evn';
+import { API_URL } from './env';
 
 import { ToDoElem, ToDoElemIns, ToDoUpdate } from './Interfaces/toDoInterface';
 
@@ -15,7 +16,7 @@ import { ToDoElem, ToDoElemIns, ToDoUpdate } from './Interfaces/toDoInterface';
 })
 export class ToDoService {
 
-  constructor(private http: HttpClient, public router: Router, private auth: AuthService) { }
+  constructor(private http: HttpClient, public router: Router, private auth: AuthService, private snackBar: MatSnackBar) { }
 
   sendToDb(newElem: ToDoElemIns) { // POST method per inserire il un nuovo ToDo nel DB remoto
     if (this.auth.isLoggedIn) {
@@ -23,11 +24,11 @@ export class ToDoService {
       let options = { headers: headers_object }
       const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`;
       return this.http.post<any>(url, newElem, options).subscribe(_ => {
-        alert("Dato inserito correttamente");
+        this.snackBarView("To-Do salvato correttamente", "Ok")
       })
     }
     else {
-      alert("Accedi");
+      this.snackBarView("Non sei autenticato, prova ad accedere e riprova", "Ok")
       return;
     }
   }
@@ -64,6 +65,12 @@ export class ToDoService {
     return this.http.delete<any>(url, options).pipe(retry(3), catchError(this.handleError));
   }
 
+  private snackBarView(text: string, action: string) {
+    this.snackBar.open(text, action, {
+      duration: 3000, horizontalPosition: 'left'
+    });
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -71,14 +78,19 @@ export class ToDoService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
-      if (error.status == 500) { // errore 500
-        console.log("Internal server error")
+      if (error.status == 500) { // errore 500: errore interno al server 
+        
       }
-      else if (error.status == 409) { // errore 409 
-        console.log("Conflitto")
+      else if(error.status == 401) { // errore 401: client non autorizzato
+
       }
-      else if (error.status == 404) { // errore 404
-        console.log("Pagina non trovata");
+
+      else if (error.status == 403) { // errore 403: Proibito!
+        this.snackBarView("forbidden", "ok")
+      }
+
+      else if (error.status == 404) { // errore 404: elemento non trovato
+
       }
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);

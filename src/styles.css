@@ -14,17 +14,13 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
-}
-
-.elemListNav {
-    float: left;
+    background-color: rgb(223, 223, 223);
 }
 
 .elemListNav .aListNav {
     display: block;
-    color: white;
-    text-align: center;
+    color: black;
+    text-align: left;
     padding: 14px 16px;
     text-decoration: none;
 }
@@ -32,18 +28,18 @@ body {
 .activeElemNav {
     display: block;
     color: white;
-    text-align: center;
+    text-align: left;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 .elemListNav .aListNav:hover {
     transition: 0.5s;
-    background-color: #111;
+    background-color: rgb(162, 162, 162);
 }
 
 .elemListNav .aListNav:hover:not(.activeElemNav) {
-    background-color: #111;
+    background-color: rgb(162, 162, 162);
 }
 
 .activeElemNav {
@@ -62,5 +58,21 @@ body {
 h1 {
     text-align: center;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-drawer-container {
+    height: 100%;
+}
+
+.sidenav-drawer {
+    width: 25%;
+}
