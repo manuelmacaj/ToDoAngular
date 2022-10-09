@@ -23,9 +23,14 @@ export class ToDoService {
       let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
       let options = { headers: headers_object }
       const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`;
-      return this.http.post<any>(url, newElem, options).subscribe(_ => {
-        this.snackBarView("To-Do salvato correttamente", "Ok")
-      })
+      return this.http.post<any>(url, newElem, options)
+        .pipe(catchError(this.handleError))
+        .subscribe(_ => {
+          this.snackBarView("To-Do salvato correttamente", "Ok");
+        },
+          _ => {
+            this.auth.logout()
+          })
     }
     else {
       this.snackBarView("Non sei autenticato, prova ad accedere e riprova", "Ok")
@@ -79,18 +84,18 @@ export class ToDoService {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       if (error.status == 500) { // errore 500: errore interno al server 
-        
-      }
-      else if(error.status == 401) { // errore 401: client non autorizzato
 
+      }
+      else if (error.status == 401) { // errore 401: client non autorizzato (necessita di rieffettuare l'accesso)
+        alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
 
       else if (error.status == 403) { // errore 403: Proibito!
-        this.snackBarView("forbidden", "ok")
+        alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
 
       else if (error.status == 404) { // errore 404: elemento non trovato
-
+        alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
