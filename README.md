@@ -12,7 +12,7 @@ After created an account, you will able to:
 - Edit a To-Do: in this case, you can change task's status and, eventually, the text.
 
 ![Poster 1](media/REDME%20FILE/InsertToDoScreen.png)
-![Poster 1](media/REDME%20FILE/allToDoScreen.png.png)
+![Poster 1](media/REDME%20FILE/allToDoScreen.png)
 ![Poster 1](media/REDME%20FILE/DetailToDo.png)
 
 ## Development server
