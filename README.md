@@ -1,6 +1,19 @@
-# ToDoFront
+# ToDo List (Angular)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2.
+
+## What is To-Do List (Angular)?
+
+To-Do List is my first Web Application developed with Angular Framework.
+To create a list of ToDo, you need to create an account.
+After created an account, you will able to:
+- Insert a To-Do: create a task ;
+- See all To-Do: see all tasks; 
+- Edit a To-Do: in this case, you can change task's status and, eventually, the text.
+
+![Poster 1](media/REDME%20FILE/InsertToDoScreen.png)
+![Poster 1](media/REDME%20FILE/allToDoScreen.png.png)
+![Poster 1](media/REDME%20FILE/DetailToDo.png)
 
 ## Development server
 

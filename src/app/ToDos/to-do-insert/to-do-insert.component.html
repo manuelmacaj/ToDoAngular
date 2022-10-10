@@ -24,12 +24,10 @@
             </li>
         </ul>
     </mat-drawer>
-    <div class="insertToDO">
-        <ng-container>
-            <input type="text" placeholder="Aggiungi un ToDo" [(ngModel)]="textTodo" name="textTodo">
-            <button mat-fab color="warn" (click)="takeToDo()">
-                <mat-icon fontIcon="send"></mat-icon>
-            </button>
-        </ng-container>
+    <div class="InputButtonDiv">
+        <input type="text" placeholder="Aggiungi un ToDo" [(ngModel)]="textTodo" name="textTodo">
+        <button mat-fab color="warn" (click)="takeToDo()">
+            <mat-icon fontIcon="send"></mat-icon>
+        </button>
     </div>
 </mat-drawer-container>

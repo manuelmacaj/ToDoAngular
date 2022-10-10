@@ -16,21 +16,16 @@ button:hover {
     background-color: #bbb;
 } */
 
-.insertToDO {
+.InputButtonDiv {
+    text-align: center;
     background-color: green;
     padding: 30px;
     color: white;
     display: block;
 }
 
-.insertToDO:after {
-    content: "";
-    display: table;
-    clear: both;
-}
 
 input[type=text] {
-    margin: 5px;
     width: 90%;
     font-size: 16px;
     padding: 10px;

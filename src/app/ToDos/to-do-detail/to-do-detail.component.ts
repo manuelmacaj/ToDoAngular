@@ -44,12 +44,18 @@ export class ToDoDetailComponent implements OnInit {
     this.todoService.updateTodo(this.toDoSelected).subscribe(_ => {
       this.snackBarView("Aggiornamento eseguito con successo", "Ok");
       this.goBack();
+    }, 
+    _ => {
+      this.auth.logout();
     })
   }
   deleteTodo() { // funzione per la cancellazione di un todo
     this.todoService.deleteTodo(this.toDoSelected.id).subscribe(_ => {
       this.snackBarView("Cancellazione eseguito con successo ", "Ok");
       this.goBack();
+    }, 
+    _ => {
+      this.auth.logout();
     })
   }
   logout() {

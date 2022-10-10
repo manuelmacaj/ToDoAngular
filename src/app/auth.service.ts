@@ -54,7 +54,7 @@ export class AuthService {
   logout() {
     localStorage.clear(); // pulisco il localStorage 
     this.router.navigate(['/login']); // riporto l'utente alla finestra di login 
-    this.snackBarView("Logout completed.", "Ok")
+    this.snackBarView("Logout completato.", "Ok")
   }
   snackBarView(text: string, action: string) {
     this.snackBar.open(text, action, {
@@ -66,16 +66,16 @@ export class AuthService {
 
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
-      alert("Errore lato client")
+      alert("Errore lato client. Assicurarsi di essere connessi a Internet")
       console.error('An error occurred:', error.error);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
-      if (error.status == 403) {
-        console.error(error.message)
+      if (error.status == 404) {
+        alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
       else if (error.status == 401) { // errore 401: client non autorizzato
-        console.error(error.message)
+        alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
       console.error(
         `Backend returned code ${error.status}, body was: `, error.error);
@@ -84,6 +84,3 @@ export class AuthService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }
-
-
-
