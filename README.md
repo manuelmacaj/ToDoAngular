@@ -10,10 +10,25 @@ After created an account, you will able to:
 
 ## Insert a To-Do
 ![Poster 1](media/REDME%20FILE/InsertToDoScreen.png)
+This section allows you to create a To-Do. The send button works if you logged in your account. 
+
 ## See all To-Do
 ![Poster 1](media/REDME%20FILE/allToDoScreen.png)
+This section allows you to see the own To-Do List. Each To-Do element has a background color: 
+- `Green` means that this task is completed; 
+- `Red` means that this task isn't completed yet;
+Other thing is the Tab on top the To-Do List:
+- `All ToDo tab` is the section where you can see all the To-Do list;
+- `ToDo tab` is the section where you can see  all the uncompleted ToDo;
+- `Completati tab` is the section where you can see all the completed To-Do;
+
 ## Edit a To-Do
 ![Poster 1](media/REDME%20FILE/DetailToDo.png)
+This section allows you to edit a To-Do selected from the list:
+- update button: update status and/or text;
+- deleted button: delete the To-Do from DB; 
+- Go Back button: return to To-Do List.
+
 
 
 ## Development server
