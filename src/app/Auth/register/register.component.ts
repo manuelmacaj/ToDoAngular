@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit() {
-
+    this.registrazioneFormBuilder.disable
     let registerForm: RegisterForm = {
       name: this.registrazioneFormBuilder.value.name!,
       surname: this.registrazioneFormBuilder.value.surname!,
@@ -47,7 +47,11 @@ export class RegisterComponent implements OnInit {
     this.auth.register(registerForm).subscribe(_ => {
       this.snackBarView("Registrazione completata. ora Accedi", "Ok");
       this.dialogRef.close() // se la registrazione ha avuto successo, chiudo il dialog corrente
-    })
+    },
+      _ => {
+        this.registrazioneFormBuilder.enable
+      }
+    )
   }
 
   private snackBarView(text: string, action: string) {
