@@ -3,7 +3,7 @@
 
 <!--Dialog content-->
 <mat-dialog-content>
-
+    <mat-progress-bar mode="query" *ngIf="signupLoading"></mat-progress-bar>
     <form (ngSubmit)="onSubmit()" [formGroup]="registrazioneFormBuilder">
         <!--Nome e cognome-->
         <mat-form-field appearance="fill">

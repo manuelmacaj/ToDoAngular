@@ -16,11 +16,12 @@ import { RegisterForm } from 'src/app/Interfaces/UserInterface';
 export class RegisterComponent implements OnInit {
   REGEX_EMAIL = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
 
-  nameControl = new FormControl('', Validators.required)
-  surnameControl = new FormControl('', Validators.required)
-  emailControl = new FormControl('', [Validators.required, Validators.email])
-  passwordControl = new FormControl('', Validators.required)
-  confirmPasswordControl = new FormControl('', Validators.required)
+  nameControl = new FormControl('', Validators.required);
+  surnameControl = new FormControl('', Validators.required);
+  emailControl = new FormControl('', [Validators.required, Validators.email]);
+  passwordControl = new FormControl('', Validators.required);
+  confirmPasswordControl = new FormControl('', Validators.required);
+  signupLoading = false;
 
   registrazioneFormBuilder = new FormGroup({
     name: this.nameControl,
@@ -30,13 +31,14 @@ export class RegisterComponent implements OnInit {
     confirmPassword: this.confirmPasswordControl,
   },
     [CustomValidators.MatchValidator('password', 'confirmPassword')]
-  )
+  );
 
   constructor(private auth: AuthService, private router: Router, private dialogRef: MatDialogRef<RegisterComponent>, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void { }
 
   onSubmit() {
+    this.signupLoading = true;
     this.registrazioneFormBuilder.disable
     let registerForm: RegisterForm = {
       name: this.registrazioneFormBuilder.value.name!,
@@ -46,9 +48,11 @@ export class RegisterComponent implements OnInit {
     }
     this.auth.register(registerForm).subscribe(_ => {
       this.snackBarView("Registrazione completata. ora Accedi", "Ok");
+      this.signupLoading = false;
       this.dialogRef.close() // se la registrazione ha avuto successo, chiudo il dialog corrente
     },
       _ => {
+        this.signupLoading = false;
         this.registrazioneFormBuilder.enable
       }
     )
