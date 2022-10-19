@@ -1,5 +1,5 @@
 <mat-drawer-container autosize>
-    <mat-toolbar>
+    <mat-toolbar class="toolbarContainer">
         <button type="button" mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
@@ -17,7 +17,8 @@
                 <a class="aListNav" routerLink="/todos">ToDo List</a>
             </li>
             <li *ngIf="!auth.isLoggedIn" class="elemListNav">
-                <a class="aListNav" routerLink="/login">Login</a>
+                <!-- <a class="aListNav" routerLink="/login">Login</a> -->
+                <a class="aListNav" (click)="loginDialog()">Login</a>
             </li>
             <li *ngIf="auth.isLoggedIn" class="elemListNav">
                 <a class="aListNav" (click)="logout()">Logout</a>

@@ -25,7 +25,10 @@ export class ShowsToDoComponent implements OnInit {
     this.toDoService.getAllToDoList().subscribe(data => {
       this.toDoList = data
       this.toDoList.reverse();
+    }, (_ => {
+      this.logout();
     })
+    )
   }
   logout() {
     this.auth.logout()

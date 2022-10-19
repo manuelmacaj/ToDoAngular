@@ -1,8 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
+import { LoginComponent } from './Auth/login/login.component';
 import { API_URL } from './env';
 import { LoginForm, RegisterForm } from './Interfaces/UserInterface';
 
@@ -23,23 +25,11 @@ export class AuthService {
     let url = `${this.endpoint}/sign-in/`;
     return this.http.post<any>(url, userLogin)
       .pipe(catchError(this.handleError))
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', res["access_token"]); // alloco l'access token nel localStorage
-        this.getUser(res["id"]).subscribe((data) => { // prelevo le informazioni dell'utente
-          this.snackBarView("Accesso eseguito", "Ok")
-          // local storage
-          localStorage.setItem("id", String(data["id"]));
-          localStorage.setItem("name", String(data["name"]));
-          localStorage.setItem("surname", String(data["surname"]));
-          localStorage.setItem("email", String(data["email"]))
-          this.router.navigate(['/']);
-        });
-      });
   }
 
-  private getUser(user_id: number): Observable<any> { // prelevo l'info utente
+  getUser(user_id: number): Observable<any> { // prelevo l'info utente
     let url = `${this.endpoint}/user/${user_id}/`;
-    return this.http.get(url).pipe(catchError(this.handleError));
+    return this.http.get(url).pipe(catchError(this.handleError))
   }
 
   getToken() { // restituisco il token
@@ -53,7 +43,7 @@ export class AuthService {
 
   logout() {
     localStorage.clear(); // pulisco il localStorage 
-    this.router.navigate(['/login']); // riporto l'utente alla finestra di login 
+    this.router.navigate(['/insert']); // riporto l'utente alla finestra di login 
     this.snackBarView("Logout completato.", "Ok")
   }
   snackBarView(text: string, action: string) {

@@ -1,7 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/auth.service';
+import { LoginComponent } from 'src/app/Auth/login/login.component';
 import { ToDoElemIns } from 'src/app/Interfaces/toDoInterface';
 import { ToDoService } from 'src/app/to-do.service';
 
@@ -20,7 +22,7 @@ export class ToDoInsertComponent implements OnInit {
     current_time: '',
   }
 
-  constructor(private toDoService: ToDoService, protected auth: AuthService, private snackBar: MatSnackBar) { }
+  constructor(private toDoService: ToDoService, protected auth: AuthService, private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
   ngOnInit(): void { }
 
@@ -41,13 +43,19 @@ export class ToDoInsertComponent implements OnInit {
     this.toDoElem.fatto = false; // di default è false
   }
 
-  logout() {
-    this.auth.logout()
+  loginDialog() { // finestra dialogo Angular Material
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true; // l'unico modo per chiudere la finestra di dialogo è tramite 
+    dialogConfig.autoFocus = true;
+    this.dialog.open(LoginComponent, dialogConfig) // apro il dialog specificando il Component e le configurazioni
   }
 
+  logout() {
+    this.auth.logout();
+  }
   private snackBarView(text: string, action: string) {
     this.snackBar.open(text, action, {
-      duration: 3000, horizontalPosition:'left'
+      duration: 3000, horizontalPosition: 'left'
     });
   }
 }
