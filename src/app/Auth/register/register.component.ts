@@ -38,22 +38,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit() {
-    this.signupLoading = true;
-    this.registrazioneFormBuilder.disable
     let registerForm: RegisterForm = {
       name: this.registrazioneFormBuilder.value.name!,
       surname: this.registrazioneFormBuilder.value.surname!,
       email: this.registrazioneFormBuilder.value.email!,
       password: this.registrazioneFormBuilder.value.password!,
     }
+    this.disableFields();
     this.auth.register(registerForm).subscribe(_ => {
       this.snackBarView("Registrazione completata. ora Accedi", "Ok");
       this.signupLoading = false;
       this.dialogRef.close() // se la registrazione ha avuto successo, chiudo il dialog corrente
     },
       _ => {
-        this.signupLoading = false;
-        this.registrazioneFormBuilder.enable
+        this.enableFields()
       }
     )
   }
@@ -64,6 +62,22 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  private disableFields() {
+    this.signupLoading = true;
+    this.registrazioneFormBuilder.controls["name"].disable;
+    this.registrazioneFormBuilder.controls["surname"].disable;
+    this.registrazioneFormBuilder.controls["email"].disable;
+    this.registrazioneFormBuilder.controls["password"].disable;
+    this.registrazioneFormBuilder.controls["confirmPassword"].disable;
+  }
+  private enableFields() {
+    this.signupLoading = false;
+    this.registrazioneFormBuilder.controls["name"].enable;
+    this.registrazioneFormBuilder.controls["surname"].enable;
+    this.registrazioneFormBuilder.controls["email"].enable;
+    this.registrazioneFormBuilder.controls["password"].enable;
+    this.registrazioneFormBuilder.controls["confirmPassword"].enable;
+  }
   //----------
   // serie di metodi utilizzati nel caso in cui i campi di registrazione risultino invalide
 

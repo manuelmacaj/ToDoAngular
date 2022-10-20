@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
       this.snackBar.open("Crea/accedi all'accunt, per vedere i tuoi To-Do", "Ok", {
         duration: 3000, horizontalPosition: 'left',
       });
-      this.router.navigate(["/insert"]);
+      this.router.navigate(["/"]);
       const dialogConfig = new MatDialogConfig();
 
       dialogConfig.disableClose = true; // l'unico modo per chiudere la finestra di dialogo è tramite 

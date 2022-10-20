@@ -51,7 +51,7 @@ export class ToDoInsertComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.auth.logout("Logout compleato.");
   }
   private snackBarView(text: string, action: string) {
     this.snackBar.open(text, action, {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { LoginComponent } from './Auth/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs'
-import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from '@angular/material/input'
 import { RegisterComponent } from './Auth/register/register.component'
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -60,7 +61,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
     provide: [HTTP_INTERCEPTORS],
     useClass: AuthInterceptor,
     multi: true
-  },],
+  }, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

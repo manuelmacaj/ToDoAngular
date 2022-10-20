@@ -29,7 +29,7 @@ export class ToDoService {
           this.snackBarView("To-Do salvato correttamente", "Ok");
         },
           _ => {
-            this.auth.logout()
+            this.auth.logout("Tentatp di creazione del To-Do fallito. Rieffettuare il login");
           })
     }
     else {
@@ -79,26 +79,22 @@ export class ToDoService {
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
+      alert("Errore lato client. Assicurarsi di essere connessi a Internet e riprova");
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       if (error.status == 500) { // errore 500: errore interno al server 
-
+        alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
       else if (error.status == 401) { // errore 401: client non autorizzato (necessita di rieffettuare l'accesso)
         alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
-
       else if (error.status == 403) { // errore 403: Proibito!
         alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
-
       else if (error.status == 404) { // errore 404: elemento non trovato
         alert(error.error["message"] + "\nStatus error: " + error.statusText);
       }
-      console.error(
-        `Backend returned code ${error.status}, body was: `, error.error);
     }
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));

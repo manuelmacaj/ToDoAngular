@@ -22,15 +22,16 @@ export class ShowsToDoComponent implements OnInit {
   // https://mercyjemosop.medium.com/rest-api-with-angular-e7c2ceaaace1
 
   getAllToDoList() { // funzione per il prelevamento di tutti gli elementi dal database
-    this.toDoService.getAllToDoList().subscribe(data => {
-      this.toDoList = data
-      this.toDoList.reverse();
-    }, (_ => {
-      this.logout();
-    })
-    )
+    this.toDoService.getAllToDoList().subscribe({
+      next: (res: any) => this.showToDos(res), 
+      error: _ => this.auth.logout("Tentativo di lettura dei To-Do fallita, rieffettuare il login")
+    });
   }
+  protected showToDos (data: any) {
+    this.toDoList = data
+      this.toDoList.reverse();
+  } 
   logout() {
-    this.auth.logout()
+    this.auth.logout("Logout completato.");
   }
 }

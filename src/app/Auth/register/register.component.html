@@ -38,8 +38,8 @@
         <div mat-line *ngIf="passwordMatchError">{{getNotMatchPassword()}}</div>
         <!--Bottoni: cancellazione e registrazione-->
         <mat-dialog-actions>
-            <button type="button" mat-button color="warn" mat-dialog-close> Annulla </button>
-            <button mat-button color="primary" type="submit" [disabled]="registrazioneFormBuilder.invalid">
+            <button type="button" mat-button color="warn" mat-dialog-close [disabled]="signupLoading"> Annulla </button>
+            <button mat-button color="primary" type="submit" [disabled]="registrazioneFormBuilder.invalid || signupLoading">
                 Registrati
             </button>
         </mat-dialog-actions>

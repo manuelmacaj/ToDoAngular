@@ -42,24 +42,24 @@ export class ToDoDetailComponent implements OnInit {
   updateTodo() { // funzione per l'aggiornamento di un todo
     this.toDoSelected.fatto = this.checkStatus;
     this.todoService.updateTodo(this.toDoSelected).subscribe(_ => {
-      this.snackBarView("Aggiornamento eseguito con successo", "Ok");
+      this.snackBarView("Aggiornamento eseguito con successo.", "Ok");
       this.goBack();
     }, 
     _ => {
-      this.auth.logout();
+      this.auth.logout("Tentativo di aggiornamento fallito, rieffettuare il login.");
     })
   }
   deleteTodo() { // funzione per la cancellazione di un todo
     this.todoService.deleteTodo(this.toDoSelected.id).subscribe(_ => {
-      this.snackBarView("Cancellazione eseguito con successo ", "Ok");
+      this.snackBarView("Cancellazione eseguito con successo.", "Ok");
       this.goBack();
     }, 
     _ => {
-      this.auth.logout();
+      this.auth.logout("Tentativo di cancellazione fallito, rieffettuare il login.");
     })
   }
   logout() {
-    this.auth.logout()
+    this.auth.logout("Logout completato.");
   }
 
   private snackBarView(text: string, action: string) {
