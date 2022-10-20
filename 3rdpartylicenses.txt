@@ -66,6 +66,9 @@ MIT
 @angular/router
 MIT
 
+ngx-cookie-service
+MIT
+
 rxjs
 Apache-2.0
                                Apache License
