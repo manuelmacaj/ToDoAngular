@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service'
 
 import { API_URL } from './env';
 import { LoginForm, RegisterForm } from './Interfaces/UserInterface';
@@ -15,7 +14,7 @@ import { LoginForm, RegisterForm } from './Interfaces/UserInterface';
 })
 export class AuthService {
   endpoint = `${API_URL}`
-  constructor(private http: HttpClient, public router: Router, private snackBar: MatSnackBar, private cookieService: CookieService) { }
+  constructor(private http: HttpClient, public router: Router, private snackBar: MatSnackBar) { }
 
   register(user: RegisterForm): Observable<any> { // registrazione utente
     let url = `${this.endpoint}/sign-up/`;
@@ -34,17 +33,16 @@ export class AuthService {
   }
 
   getToken() { // restituisco il token
-    return this.cookieService.get("access_token");
+    return localStorage.getItem("access_token");
   }
 
   get isLoggedIn() { // verifico se l'utente è loggato
-    let authToken = this.cookieService.get("access_token") ? this.cookieService.get("access_token") : null;
+    let authToken = localStorage.getItem("access_token");
     return authToken !== null ? true : false;
   }
 
   logout(message: string) {
     localStorage.clear(); // pulisco il localStorage 
-    this.cookieService.deleteAll();
     this.router.navigate(['/insert']); // riporto l'utente alla finestra di login 
     this.snackBarView(message, "Ok")
   }

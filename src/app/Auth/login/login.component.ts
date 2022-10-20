@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { LoginForm } from 'src/app/Interfaces/UserInterface';
 import { RegisterComponent } from '../register/register.component';
-import { CookieService } from 'ngx-cookie-service'
+
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   constructor(protected authService: AuthService, private dialog: MatDialog,
     private dialogRef: MatDialogRef<LoginComponent>, private snackBar: MatSnackBar,
-    public router: Router, private cookieService: CookieService) { }
+    public router: Router) { }
 
   ngOnInit(): void { }
 
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 
   private saveLocalStorage(res: any) {
     // in caso di successo, proseguo
-    this.cookieService.set('access_token', res["access_token"]); // alloco l'access token nei cookie
+    localStorage.setItem('access_token', res["access_token"]); // alloco l'access token nei cookie
     this.authService.getUser(res["id"]).subscribe((data) => {
       this.snackBarView("Accesso eseguito", "Ok");
       localStorage.setItem("id", String(data["id"]));
