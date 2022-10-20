@@ -16,14 +16,12 @@
             <input matInput type="text" placeholder="Es: Rossi" formControlName="surname">
             <mat-error *ngIf="surnameControl.invalid">Completare il campo</mat-error>
         </mat-form-field>
-        <br>
         <!--Email-->
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput type="email" placeholder="Es: mariorossi@email.it" formControlName="email">
             <mat-error *ngIf="emailControl.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
-        <br>
         <!--Password e conferma password-->
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
