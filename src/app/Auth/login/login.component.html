@@ -18,7 +18,7 @@
         <div>
             <p>
                 Non hai un account?
-                <button mat-button type="button" (click)="openDialog()">Registrati</button>
+                <button mat-button type="button" (click)="openDialog()" [disabled]="loginWorking">Registrati</button>
             </p>
         </div>
         <mat-dialog-actions>
