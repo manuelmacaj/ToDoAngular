@@ -12,11 +12,11 @@ To create a list of ToDo, you need to create an account.
 After created an account, you will able to:
 
 ## Insert a To-Do
-![Poster 1](media/README%20IMAGE/InsertToDoScreen.png)
+![Insert To-Do](./media/README%20IMAGE/InsertToDoScreen.png)
 This section allows you to create a To-Do. The send button works if you logged in your account. 
 
 ## See all To-Do
-![Poster 1](media/README%20IMAGE/allToDoScreen.png)
+![All To-Do](./media/README%20IMAGE/allToDoScreen.png)
 This section allows you to see the own To-Do List. Each To-Do element has a background color: 
 - `Green` means that this task is completed; 
 - `Red` means that this task isn't completed yet.
@@ -27,7 +27,7 @@ Other thing is the Tab on top the To-Do List:
 - `Completati tab` is the section where you can see all the completed To-Do;
 
 ## Edit a To-Do
-![Poster 1](media/README%20IMAGE/DetailToDo.png)
+![Detail To-Do](./media/README%20IMAGE/DetailToDo.png)
 This section allows you to edit a To-Do selected from the list:
 - `Update` button: update status and/or text;
 - `Delete` button: delete the To-Do from DB; 
@@ -35,13 +35,13 @@ This section allows you to edit a To-Do selected from the list:
 
 ## How sign-in/sign up?
 On the toolbar, there's the menu icon. after clicking, it appears a SideNav. 
-![Poster 1](media/README%20IMAGE/Login.png)
+![Menu](./media/README%20IMAGE/LoginMenu.png)
 
 ### Login page
-![Poster 1](/media/README%20IMAGE/LoginToDoScreen.png)
+![Login](./media/README%20IMAGE/Login.png)
 
 ### Sign-up
-![Poster 1](media/README%20IMAGE/SignUPScreen.png)
+![Sign-up](.7media/README%20IMAGE/SignUPScreen.png)
 
 
 ## Development server
