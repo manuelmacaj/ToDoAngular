@@ -41,7 +41,7 @@ On the toolbar, there's the menu icon. after clicking, it appears a SideNav.
 ![Login](./media/README%20IMAGE/Login.png)
 
 ### Sign-up
-![Sign-up](.7media/README%20IMAGE/SignUPScreen.png)
+![Sign-up](./media/README%20IMAGE/SignUPScreen.png)
 
 
 ## Development server
