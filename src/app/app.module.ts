@@ -25,6 +25,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card'
 import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { MatSelectModule } from '@angular/material/select'
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar'
     MatToolbarModule,
     MatSidenavModule,
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSelectModule,
   ],
   providers: [{
     provide: [HTTP_INTERCEPTORS],

@@ -1,60 +1,60 @@
-.elemTodoDetail {
-    margin: 15px;
+.LinearGradientContainer {
+    text-align: center;
+    padding-top: 2rem;
+    height: 100%;
+    background: linear-gradient(-45deg, #a45037, #234a91, #912077, #23d5ab);
+    background-size: 500% 500%;
+    animation: dynamicGradient 15s ease infinite;
+    color: white;
+}
+/*fonte: https://codepen.io/P1N2O/pen/pyBNzX*/
+@keyframes dynamicGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+p {
+    color: black;
 }
 
 ul {
     list-style: none;
-    margin: auto;
-    padding: 0;
+    padding: 2px;
 }
 
-div {
-    padding: 10px;
-    margin: 15px;
+.cardLayout {
+    margin: 2rem auto;  
+    background-color: white;
     text-align: center;
-    border: 2px solid black;
-    border-radius: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.479);
+    transition: 0.3s;
+    width: 60%;
+    height: auto;
+    border-radius: 10px;
 }
 
-input[type=text],
-input[type="datetime"] {
-    margin: 5px;
+.cardLayout:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+.container {
+    padding: 1rem;
+}
+
+mat-form-field {
+    margin: 1px auto;
     font-weight: bold;
     color: black;
-    width: 50%;
+    width: 100%;
     font-size: 15px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
-}
-
-input[type=text]:hover {
-    border: 3px solid #555;
-}
-
-input[type=text]:focus {
-    border: 3px solid #555;
-}
-
-.disabledField[disabled] {
-    color: black;
-}
-
-.enabledField:hover {
-    background-color: #98FB98;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-}
-
-.disabledField:hover {
-    background-color: #fdaeae;
-    color: black;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    cursor: not-allowed;
 }
 
 .btnSingleToDo {

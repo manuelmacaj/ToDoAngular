@@ -1,10 +1,12 @@
 <mat-drawer-container autosize>
+    <!--Mat Toolbar-->
     <mat-toolbar>
         <button type="button" mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
         <span>ToDoApp - Detail</span>
     </mat-toolbar>
+    <!--Mat Drawer-->
     <mat-drawer class="sidenav-drawer" #drawer mode="over">
         <mat-toolbar>
             <span>Menu</span>
@@ -23,35 +25,57 @@
             </ul>
         </nav>
     </mat-drawer>
-    <div>
-        <span>Modifica il seguente ToDo, specificando anche se il seguente task è stato completato!</span>
-        <ul>
-            <li class="elemTodoDetail">
-                <label>ID To-Do:</label><br>
-                <input class="disabledField" type="text" [ngModel]="toDoSelected.id" disabled>
-            </li>
-            <li class="elemTodoDetail">
-                <label>Todo:</label><br>
-                <input [ngClass]="toDoSelected.fatto == false ? 'enabledField' : 'disabledField'" type="text"
-                    [(ngModel)]="toDoSelected.todo_text" [disabled]="toDoSelected.fatto == true">
-            </li>
-            <li class="elemTodoDetail">
-                <label for="currentTime">Data creazione:</label><br>
-                <input name="currentTime" class="disabledField" type="datetime" [ngModel]="toDoSelected.current_time"
-                    disabled>
-            </li>
-            <li class="elemTodoDetail">
-                <label for="trueFalse">Completato:</label><br>
-                <select name="trueFalse" [(ngModel)]="this.checkStatus">
-                    <option [disabled]="toDoSelected.fatto" *ngFor="let status of todoStatus" [value]="status">
-                        {{status}}
-                    </option>
-                </select><br>
-            </li>
-        </ul>
-        <button mat-raised-button class="btnSingleToDo" (click)="goBack()">Go Back</button>
-        <button mat-raised-button class="btnSingleToDo" color="warn" (click)="deleteTodo()">Delete</button>
-        <button mat-raised-button class="btnSingleToDo" color="primary" *ngIf="this.toDoSelected.fatto == false"
-            (click)="updateTodo()">Update</button>
+    <div class="LinearGradientContainer">
+        <!--My card layout-->
+        <div class="cardLayout">
+            <!--Container-->
+            <div class="container">
+                <p>Modifica il seguente ToDo, specificando anche se il seguente task è stato completato!</p>
+                <!--Mat card content (necessary to putting all mat form filed)-->
+                <mat-card-content>
+                    <!--UL-->
+                    <ul>
+                        <li>
+                            <mat-form-field appearance="outline">
+                                <mat-label>ID To-Do</mat-label>
+                                <input matInput type="number" [ngModel]="toDoSelected.id" disabled>
+                            </mat-form-field>
+                        </li>
+                        <li>
+                            <mat-form-field appearance="outline">
+                                <mat-label>To-Do</mat-label>
+                                <input matInput type="text" [(ngModel)]="textTodo"
+                                    [disabled]="toDoSelected.fatto == true">
+                            </mat-form-field>
+                        </li>
+                        <li>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Data creazione</mat-label>
+                                <input matInput type="datetime" [ngModel]="toDoSelected.current_time" disabled>
+                            </mat-form-field>
+                        </li>
+                        <li>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Fatto?</mat-label>
+                                <mat-select [(ngModel)]="checkStatus">
+                                    <mat-option [disabled]="toDoSelected.fatto" *ngFor="let status of todoStatus"
+                                        [value]="status">
+                                        {{status}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </li>
+                    </ul>
+                    <!--Mat card action-->
+                    <mat-card-actions>
+                        <button mat-raised-button class="btnSingleToDo" (click)="goBack()">Go Back</button>
+                        <button mat-raised-button class="btnSingleToDo" color="warn"
+                            (click)="deleteTodo()">Delete</button>
+                        <button mat-raised-button class="btnSingleToDo" color="primary"
+                            *ngIf="this.toDoSelected.fatto == false" (click)="updateTodo()">Update</button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </div>
+        </div>
     </div>
 </mat-drawer-container>

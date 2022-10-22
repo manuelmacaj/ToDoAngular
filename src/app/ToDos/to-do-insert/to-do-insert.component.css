@@ -1,4 +1,4 @@
-.InputButtonDiv {
+.LinearGradientContainer {
     text-align: center;
     padding-top: 2rem;
     height: 100%;
@@ -7,6 +7,7 @@
     animation: dynamicGradient 15s ease infinite;
     color: white;
 }
+
 /*fonte: https://codepen.io/P1N2O/pen/pyBNzX*/
 @keyframes dynamicGradient {
     0% {
