@@ -1,7 +1,9 @@
 .LinearGradientContainer {
     text-align: center;
     padding-top: 2rem;
-    height: 100%;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
     background: linear-gradient(-45deg, #a45037, #234a91, #912077, #23d5ab);
     background-size: 500% 500%;
     animation: dynamicGradient 15s ease infinite;

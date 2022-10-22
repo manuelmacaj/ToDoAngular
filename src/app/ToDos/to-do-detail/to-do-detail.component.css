@@ -1,12 +1,14 @@
 .LinearGradientContainer {
-    text-align: center;
     padding-top: 2rem;
-    height: 100%;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
     background: linear-gradient(-45deg, #a45037, #234a91, #912077, #23d5ab);
     background-size: 500% 500%;
     animation: dynamicGradient 15s ease infinite;
     color: white;
 }
+
 /*fonte: https://codepen.io/P1N2O/pen/pyBNzX*/
 @keyframes dynamicGradient {
     0% {
@@ -21,7 +23,9 @@
         background-position: 0% 50%;
     }
 }
+
 p {
+    resize: both;
     color: black;
 }
 
@@ -31,7 +35,7 @@ ul {
 }
 
 .cardLayout {
-    margin: 2rem auto;  
+    margin: 2rem auto;
     background-color: white;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.479);
@@ -46,7 +50,7 @@ ul {
 }
 
 .container {
-    padding: 1rem;
+    padding: 2rem;
 }
 
 mat-form-field {
@@ -58,5 +62,5 @@ mat-form-field {
 }
 
 .btnSingleToDo {
-    margin-left: 5px;
+    margin: 5px 1px 0px 1px;
 }

@@ -1,6 +1,6 @@
 <mat-progress-bar mode="indeterminate" *ngIf="loginWorking"></mat-progress-bar>
 <h2 mat-dialog-title>Login</h2>
-<h5> Completa i campi per effettuare il login </h5>
+<h5> Completa i campi per effettuare il login. </h5>
 <mat-dialog-content>
     <form (ngSubmit)="onSubmit()" [formGroup]="userLoginFormBuilder">
         <mat-form-field appearance="fill">

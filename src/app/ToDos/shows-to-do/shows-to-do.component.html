@@ -3,7 +3,7 @@
         <button type="button" mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <span>ToDoApp - ToDo List di {{nameUser}}</span>
+        <span>ToDoApp - I To-Do di {{nameUser}}</span>
     </mat-toolbar>
     <mat-drawer class="sidenav-drawer" #drawer mode="over">
         <mat-toolbar>
@@ -30,7 +30,7 @@
     <!--Mat Tab Group-->
     <mat-tab-group mat-align-tabs="center" dynamicHeight>
         <!--Mat Tab di tutti i todo completati e non-->
-        <mat-tab label="All todo">
+        <mat-tab label="I miei To-Do">
             <div *ngIf="toDoList.length>0">
                 <ul class="ulListTodos">
                     <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
@@ -47,7 +47,7 @@
             </div>
         </mat-tab>
         <!--Mat Tab di tutti i todo da svolgere -->
-        <mat-tab label="ToDo">
+        <mat-tab label="To-Do non svolti">
             <ul class="ulListTodos">
                 <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
                     <div *ngIf="!todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
@@ -59,7 +59,7 @@
             </ul>
         </mat-tab>
         <!--Mat Tab di tutti i todo completati-->
-        <mat-tab label="Completati">
+        <mat-tab label="To-Do completati">
             <ul class="ulListTodos">
                 <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
                     <div *ngIf="todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.id}}"

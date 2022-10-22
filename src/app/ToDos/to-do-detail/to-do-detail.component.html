@@ -37,12 +37,6 @@
                     <ul>
                         <li>
                             <mat-form-field appearance="outline">
-                                <mat-label>ID To-Do</mat-label>
-                                <input matInput type="number" [ngModel]="toDoSelected.id" disabled>
-                            </mat-form-field>
-                        </li>
-                        <li>
-                            <mat-form-field appearance="outline">
                                 <mat-label>To-Do</mat-label>
                                 <input matInput type="text" [(ngModel)]="textTodo"
                                     [disabled]="toDoSelected.fatto == true">
@@ -68,11 +62,11 @@
                     </ul>
                     <!--Mat card action-->
                     <mat-card-actions>
-                        <button mat-raised-button class="btnSingleToDo" (click)="goBack()">Go Back</button>
+                        <button mat-raised-button class="btnSingleToDo" (click)="goBack()">Indietro</button>
                         <button mat-raised-button class="btnSingleToDo" color="warn"
-                            (click)="deleteTodo()">Delete</button>
+                            (click)="deleteTodo()">Elimina</button>
                         <button mat-raised-button class="btnSingleToDo" color="primary"
-                            *ngIf="this.toDoSelected.fatto == false" (click)="updateTodo()">Update</button>
+                            *ngIf="this.toDoSelected.fatto == false" (click)="updateTodo()">Aggiorna</button>
                     </mat-card-actions>
                 </mat-card-content>
             </div>
