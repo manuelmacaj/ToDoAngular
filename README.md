@@ -38,7 +38,7 @@ On the toolbar, there's the menu icon. after clicking, it appears a SideNav.
 ![Poster 1](media/README%20IMAGE/Login.png)
 
 ### Login page
-![Poster 1](media/README%20IMAGE/LoginToDoScreen.png)
+![Poster 1](/media/README%20IMAGE/LoginToDoScreen.png)
 
 ### Sign-up
 ![Poster 1](media/README%20IMAGE/SignUPScreen.png)
