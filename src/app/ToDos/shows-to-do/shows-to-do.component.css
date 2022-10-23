@@ -1,16 +1,48 @@
-.ulListTodos{
-    list-style-type: none;
-    padding: 0;
+mat-tab-group {
+    margin: 1rem auto;
+    padding: 5px;
 }
-.singleElemGraphics {
-    font-weight: bolder;
+
+.flexContainer {
+    margin: 50px;
     padding: 10px;
-    border-style: solid;
-    margin: 10px;
-    margin-bottom: 5px;
+    display: flex;
+    /* flex-wrap: wrap;
+    flex-direction: row; */
+    flex-flow: row wrap;
+    justify-content: center;
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.itemCard {
+    padding: 10px;
+    font-size: medium;
+    text-align: start;
     cursor: pointer;
 }
-.mat-tab-group {
-    margin: 48px;
-    
+
+.cardLayout {
+    box-sizing: border-box;
+    background-color: white;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.479);
+    transition: 0.3s;
+    width: 30%;
+    max-width: 100%;
+    border-radius: 10px;
+    transition: transform .2s;
+    /* Animation */
+}
+
+.cardLayout:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+@media only screen and (max-width: 680px) {
+    .cardLayout {
+        display: block;
+        width: 100%;
+    }
 }

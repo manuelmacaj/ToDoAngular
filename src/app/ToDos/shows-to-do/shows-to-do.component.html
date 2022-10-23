@@ -27,48 +27,45 @@
             </ul>
         </nav>
     </mat-drawer>
+
     <!--Mat Tab Group-->
     <mat-tab-group mat-align-tabs="center" dynamicHeight>
         <!--Mat Tab di tutti i todo completati e non-->
         <mat-tab label="I miei To-Do">
-            <div *ngIf="toDoList.length>0">
-                <ul class="ulListTodos">
-                    <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
-                        <div class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
-                            [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
-                            <p>To-Do:</p>
-                            <p>{{todo.todo_text}}</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div *ngIf="toDoList.length==0">
-                <p>Non hai To-Do. Inizia a crearli</p>
+            <div class="flexContainer">
+                <div class="cardLayout" *ngFor="let todo of toDoList" title="Clicca per il dettaglio."
+                    routerLink="/detail/{{todo.id}}"
+                    [ngStyle]="{'background-color': todo.fatto ? '#98FB98' : '#FF8A8A'}">
+                    <div class="itemCard">
+                        <h2>To-Do:</h2>
+                        <p>{{todo.todo_text}}</p>
+                    </div>
+                </div>
             </div>
         </mat-tab>
         <!--Mat Tab di tutti i todo da svolgere -->
         <mat-tab label="To-Do non svolti">
-            <ul class="ulListTodos">
-                <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
-                    <div *ngIf="!todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
-                        [ngStyle]="{'background-color':'#FF8A8A'}">
-                        <p>To-Do:</p>
+            <div class="flexContainer">
+                <div class="cardLayout" *ngFor="let todo of notCompletedToDo()" title="Clicca per il dettaglio."
+                    routerLink="/detail/{{todo.id}}" [ngStyle]="{'background-color': '#FF8A8A'}">
+                    <div class="itemCard">
+                        <h2>To-Do:</h2>
                         <p>{{todo.todo_text}}</p>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </mat-tab>
         <!--Mat Tab di tutti i todo completati-->
         <mat-tab label="To-Do completati">
-            <ul class="ulListTodos">
-                <li *ngFor="let todo of toDoList" title="Clicca per aggiornare il task.">
-                    <div *ngIf="todo.fatto" class="singleElemGraphics" routerLink="/detail/{{todo.id}}"
-                        [ngStyle]="{'background-color': '#98FB98'}">
-                        <p>To-Do:</p>
+            <div class="flexContainer">
+                <div class="cardLayout" *ngFor="let todo of completedToDo()" title="Clicca per il dettaglio."
+                    routerLink="/detail/{{todo.id}}" [ngStyle]="{'background-color': '#98FB98'}">
+                    <div class="itemCard">
+                        <h2>To-Do:</h2>
                         <p>{{todo.todo_text}}</p>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </mat-tab>
     </mat-tab-group>
 </mat-drawer-container>
