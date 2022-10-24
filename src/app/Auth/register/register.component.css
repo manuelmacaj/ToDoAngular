@@ -1,14 +1,5 @@
-mat-form-field {
-    margin: 5px;
-}
-
-form {
+.gridContainer {
     display: grid;
-    grid-template-columns: 500px;
-}
-@media only screen and (max-width: 680px) {
-    form {
-        display: grid;
-        grid-template-columns: 200px;
-    }
+    grid-template-columns: auto;
+    gap: 5px;
 }

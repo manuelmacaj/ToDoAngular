@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
 
   openDialog() { // apertura della finestra di dialogo per la registrazione dell'utente
     const dialogConfig = new MatDialogConfig();
-
+    dialogConfig.width = "650px";
     dialogConfig.disableClose = true; // l'unico modo per chiudere la finestra di dialogo è tramite 
     dialogConfig.autoFocus = true;
 

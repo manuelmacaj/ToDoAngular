@@ -37,12 +37,12 @@ ul {
 .cardLayout {
     margin: 2rem auto;
     background-color: white;
-    text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.479);
     transition: 0.3s;
-    width: 60%;
+    width: 70%;
     height: auto;
     border-radius: 10px;
+    text-align: center;
 }
 
 .cardLayout:hover {
@@ -50,15 +50,17 @@ ul {
 }
 
 .container {
-    padding: 2rem;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px;
+    padding: 1rem;
 }
 
 mat-form-field {
     margin: 1px auto;
-    font-weight: bold;
     color: black;
-    width: 100%;
     font-size: 15px;
+    width: 100%;
 }
 
 .btnSingleToDo {

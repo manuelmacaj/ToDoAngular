@@ -45,6 +45,8 @@ export class ToDoInsertComponent implements OnInit {
 
   loginDialog() { // finestra dialogo Angular Material
     const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = "650px";
+    dialogConfig.height = "380px"
     dialogConfig.disableClose = true; // l'unico modo per chiudere la finestra di dialogo è tramite 
     dialogConfig.autoFocus = true;
     this.dialog.open(LoginComponent, dialogConfig) // apro il dialog specificando il Component e le configurazioni

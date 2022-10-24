@@ -1,19 +1,8 @@
-form {
+.gridContainer {
     display: grid;
-    grid-template-columns: 500px;
-    grid-template-rows: 55px;
-    text-align: center;
-    /*
-    grid-template-columns: 200px 1fr; 
-    Based on the above CSS, the first column will have a 
-    fixed width of 200px whilst the second will take 1fr (“one fraction”) of 
-    the remaining available space.
-    */
+    grid-template-columns: auto;
+    row-gap: 5px;
 }
-
-@media only screen and (max-width: 680px) {
-    form {
-        display: grid;
-        grid-template-columns: 200px;
-    }
+p {
+    text-align: center;
 }

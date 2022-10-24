@@ -1,11 +1,9 @@
+<mat-progress-bar mode="indeterminate" *ngIf="signupLoading"></mat-progress-bar>
 <h2 mat-dialog-title>Registrazione </h2>
 <h5> Completa tutti i campi per la registrazione </h5>
-
 <!--Dialog content-->
-<mat-dialog-content>
-    <mat-progress-bar mode="indeterminate" *ngIf="signupLoading"></mat-progress-bar>
-    <form (ngSubmit)="onSubmit()" [formGroup]="registrazioneFormBuilder">
-        <!--Nome e cognome-->
+<form (ngSubmit)="onSubmit()" [formGroup]="registrazioneFormBuilder">
+    <mat-dialog-content class="gridContainer">        <!--Nome e cognome-->
         <mat-form-field appearance="fill">
             <mat-label>Nome</mat-label>
             <input matInput type="text" placeholder="Es: Mario" formControlName="name">
@@ -34,12 +32,12 @@
             <mat-error *ngIf="confirmPasswordControl.invalid">{{getConfirmPasswordErrorMessage()}}</mat-error>
         </mat-form-field>
         <div mat-line *ngIf="passwordMatchError">{{getNotMatchPassword()}}</div>
-        <!--Bottoni: cancellazione e registrazione-->
-        <mat-dialog-actions>
-            <button type="button" mat-button color="warn" mat-dialog-close [disabled]="signupLoading"> Annulla </button>
-            <button mat-button color="primary" type="submit" [disabled]="registrazioneFormBuilder.invalid || signupLoading">
-                Registrati
-            </button>
-        </mat-dialog-actions>
-    </form>
-</mat-dialog-content>
+    </mat-dialog-content>
+    <!--Bottoni: cancellazione e registrazione-->
+    <mat-dialog-actions>
+        <button type="button" mat-button color="warn" mat-dialog-close [disabled]="signupLoading"> Annulla </button>
+        <button mat-button color="primary" type="submit" [disabled]="registrazioneFormBuilder.invalid || signupLoading">
+            Registrati
+        </button>
+    </mat-dialog-actions>
+</form>
