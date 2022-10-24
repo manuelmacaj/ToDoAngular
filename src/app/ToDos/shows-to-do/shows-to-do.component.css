@@ -7,9 +7,8 @@ mat-tab-group {
     margin: 50px;
     padding: 10px;
     display: flex;
-    /* flex-wrap: wrap;
-    flex-direction: row; */
     flex-flow: row wrap;
+    align-items: center;
     justify-content: center;
     row-gap: 20px;
     column-gap: 20px;
@@ -29,6 +28,7 @@ mat-tab-group {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.479);
     transition: 0.3s;
     width: 30%;
+    height: auto;
     max-width: 100%;
     border-radius: 10px;
     transition: transform .2s;

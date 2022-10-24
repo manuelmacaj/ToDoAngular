@@ -29,11 +29,6 @@ p {
     color: black;
 }
 
-ul {
-    list-style: none;
-    padding: 2px;
-}
-
 .cardLayout {
     margin: 2rem auto;
     background-color: white;
@@ -43,6 +38,7 @@ ul {
     height: auto;
     border-radius: 10px;
     text-align: center;
+
 }
 
 .cardLayout:hover {
@@ -51,7 +47,7 @@ ul {
 
 .container {
     display: grid;
-    grid-template-columns: auto;
+    place-items: center;
     gap: 5px;
     padding: 1rem;
 }
@@ -65,4 +61,10 @@ mat-form-field {
 
 .btnSingleToDo {
     margin: 5px 1px 0px 1px;
+}
+
+@media only screen and (max-width: 680px) {
+    .cardLayout {
+        width: 90%;
+    }
 }

@@ -31,7 +31,7 @@ export class ShowsToDoComponent implements OnInit {
 
   protected showToDos(data: any) {
     this.toDoList = data
-    //this.toDoList.reverse();
+    this.toDoList.reverse();
   }
 
   protected notCompletedToDo(): ToDoElem[] {
