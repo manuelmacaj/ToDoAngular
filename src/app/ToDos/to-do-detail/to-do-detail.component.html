@@ -29,7 +29,6 @@
         <!--My card layout-->
         <div class="cardLayout">
             <!--Container-->
-
             <!--Mat card content (necessary to putting all mat form filed)-->
             <mat-card-content class="container">
                 <p>Modifica il seguente ToDo, specificando anche se il seguente task è stato completato!</p>
@@ -37,14 +36,10 @@
                     <mat-label>To-Do</mat-label>
                     <input matInput type="text" [(ngModel)]="textTodo" [disabled]="toDoSelected.fatto == true">
                 </mat-form-field>
-
-
                 <mat-form-field appearance="outline">
                     <mat-label>Data creazione</mat-label>
                     <input matInput type="datetime" [ngModel]="toDoSelected.current_time" disabled>
                 </mat-form-field>
-
-
                 <mat-form-field appearance="outline">
                     <mat-label>Fatto?</mat-label>
                     <mat-select [(ngModel)]="checkStatus">
@@ -53,8 +48,6 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-
-
                 <!--Mat card action-->
                 <mat-card-actions>
                     <button mat-raised-button class="btnSingleToDo" (click)="goBack()">Indietro</button>

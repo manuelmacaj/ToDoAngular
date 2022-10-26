@@ -16,7 +16,7 @@ mat-tab-group {
 
 .itemCard {
     padding: 10px;
-    font-size: medium;
+    font-size: 16px;
     text-align: start;
     cursor: pointer;
 }
