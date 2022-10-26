@@ -80,3 +80,9 @@ mat-drawer-container {
 .sidenav-drawer {
     width: 25%;
 }
+
+@media only screen and (max-width: 680px) {
+    .sidenav-drawer {
+        width: 35%;
+    }
+}
