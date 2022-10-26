@@ -1,6 +1,7 @@
 # ToDo List (Angular)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.2. 
+
 I used [Angular Material](https://material.angular.io/).
 
 To test my site: https://manuelmacaj.github.io/ToDoAngular/
@@ -43,6 +44,14 @@ On the toolbar, there's the menu icon. after clicking, it appears a SideNav.
 ### Sign-up
 ![Sign-up](./media/README%20IMAGE/SignUPScreen.png)
 
+## Small consideration about this web app
+- I realized the BackEnd application in Python with Flask and deployed on render.com (so you will interact with it). 
+All data are stored in a remote DataBase (a PostGres DBMS). 
+[GitHub repository](https://github.com/manuelmacaj/BackEndToDo). 
+- After login, the server will provide you with a token (JWT Token) that will allow you to perform functions of creation, display your To Do List and modification of a specific To Do. The token doesn't last forever, at some point it expires (you need to re-authenticate, if you want to continue).
+- The maximum limit of a To Do text is 80 characters. 
+- The password associated with the account is not saved in plain text: in fact I foreseed a hashing password application before saving. 
+- Being a web application it works everywhere: just need a browser.
 
 ## Development server
 
