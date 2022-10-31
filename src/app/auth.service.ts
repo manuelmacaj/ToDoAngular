@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, retry, tap, throwError } from 'rxjs';
 
 import { API_URL } from './env';
 import { LoginForm, RegisterForm } from './Interfaces/UserInterface';
@@ -23,8 +23,12 @@ export class AuthService {
 
   login(userLogin: LoginForm) { // login utente
     let url = `${this.endpoint}/sign-in/`;
-    return this.http.post<any>(url, userLogin)
-      .pipe(catchError(this.handleError))
+    return this.http.post<LoginForm>(url, userLogin).pipe(
+      tap(data => {
+        return data
+      }),
+      catchError(this.handleError),
+    )
   }
 
   getUser(user_id: number): Observable<any> { // prelevo l'info utente
@@ -43,7 +47,7 @@ export class AuthService {
 
   logout(message: string) {
     localStorage.clear(); // pulisco il localStorage 
-    this.router.navigate(['/insert']); // riporto l'utente alla finestra di login 
+    this.router.navigate(['/insert']); // riporto l'utente nella sezione inserimento 
     this.snackBarView(message, "Ok")
   }
   snackBarView(text: string, action: string) {

@@ -22,7 +22,7 @@ mat-tab-group {
 }
 
 .cardLayout {
-    box-sizing: border-box;
+    flex: 3 1 300px;
     background-color: white;
     margin-right: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.479);
@@ -37,12 +37,5 @@ mat-tab-group {
 
 .cardLayout:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
-    transform: scale(1.1);
-}
-
-@media only screen and (max-width: 680px) {
-    .cardLayout {
-        display: block;
-        width: 100%;
-    }
+    transform: scale(1.05);
 }

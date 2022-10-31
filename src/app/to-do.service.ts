@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -38,7 +38,7 @@ export class ToDoService {
     }
   }
 
-  getAllToDoList(): Observable<any> { // GET method che restituisce tutti i ToDo salvati sul DB remoto
+  getAllToDoList(): Observable<ToDoElem[]> { // GET method che restituisce tutti i ToDo salvati sul DB remoto
     let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
     let options = { headers: headers_object }
     const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`

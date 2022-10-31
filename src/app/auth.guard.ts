@@ -11,21 +11,27 @@ import { LoginComponent } from './Auth/login/login.component';
 })
 export class AuthGuard implements CanActivate {
   constructor(public authService: AuthService, public router: Router, private snackBar: MatSnackBar, private dialog: MatDialog) { }
-  canActivate(
-    route: ActivatedRouteSnapshot,
+  canActivate(route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authService.isLoggedIn !== true) {
-      this.snackBar.open("Crea/accedi all'accunt, per vedere i tuoi To-Do", "Ok", {
-        duration: 3000, horizontalPosition: 'left',
-      });
-      this.router.navigate(["/"]);
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.width = "650px";
-      dialogConfig.height = "380px"
-      dialogConfig.disableClose = true; // l'unico modo per chiudere la finestra di dialogo è tramite 
-      dialogConfig.autoFocus = true;
-      this.dialog.open(LoginComponent, dialogConfig) // apro il dialog specificando il Component e le configurazioni
+
+    let currentUser = this.authService.isLoggedIn
+    if (currentUser) {
+      return true;
     }
-    return true;
+    this.snackBar.open("Crea/accedi all'accunt, per vedere i tuoi To-Do", "Ok", {
+      duration: 3000, horizontalPosition: 'left',
+    });
+    this.router.navigate(["/"]);
+    this.createLoginDialog();
+    return false;
+  }
+
+  private createLoginDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = "650px";
+    dialogConfig.height = "380px"
+    dialogConfig.disableClose = true; // l'unico modo per chiudere la finestra di dialogo è tramite 
+    dialogConfig.autoFocus = true;
+    this.dialog.open(LoginComponent, dialogConfig) // apro il dialog specificando il Component e le configurazioni
   }
 }

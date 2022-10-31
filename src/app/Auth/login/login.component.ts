@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { LoginForm } from 'src/app/Interfaces/UserInterface';
 import { RegisterComponent } from '../register/register.component';
@@ -13,10 +14,11 @@ import { RegisterComponent } from '../register/register.component';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  emailControl = new FormControl('', [Validators.required, Validators.email])
-  passwordControl = new FormControl('', Validators.required)
+  emailControl = new FormControl('', [Validators.required, Validators.email, Validators.maxLength(80)]);
+  passwordControl = new FormControl('', [Validators.required, Validators.maxLength(20)]);
+  loginSub: Subscription | undefined;
 
   userLoginFormBuilder = new FormGroup({
     email: this.emailControl,
@@ -30,13 +32,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  ngOnDestroy(): void {
+    console.log("Subscribe distrutta");
+    this.loginSub?.unsubscribe();
+  }
+
   onSubmit() {
     let userLogin: LoginForm = { // costruisco userLogin di tipo Login form, prelevando le info dalla form
       email: this.userLoginFormBuilder.value.email!,
       password: this.userLoginFormBuilder.value.password!
     };
     this.disableFields(); // diabilito i fields e abilito la progress bar di Angula Material
-    this.authService.login(userLogin).subscribe({
+    this.loginSub = this.authService.login(userLogin).subscribe({
       next: (res: any) => this.saveLocalStorage(res),
       error: (_) => this.loginFailed()
     });
@@ -65,6 +72,8 @@ export class LoginComponent implements OnInit {
   getEmailErrorMessage() { // funzione che mostra nel tag <mat-error> il messaggio d'errore per l'email
     if (this.emailControl.hasError('required'))
       return 'Completare il campo';
+    if(this.emailControl.hasError('maxlength'))
+      return 'Lunghezza email non valida';
     return this.emailControl.hasError('email') ? "Inserire in indirizzo email valida" : ""
   }
   getPasswordErrorMessage() { // funzione che mostra nel <mat-error> il messaggio d'errore per la password

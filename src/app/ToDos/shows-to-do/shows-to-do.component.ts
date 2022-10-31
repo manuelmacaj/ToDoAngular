@@ -24,12 +24,12 @@ export class ShowsToDoComponent implements OnInit {
 
   getAllToDoList() { // funzione per il prelevamento di tutti gli elementi dal database
     this.toDoService.getAllToDoList().subscribe({
-      next: (res: any) => this.showToDos(res),
+      next: (res: ToDoElem[]) => this.showToDos(res),
       error: _ => this.auth.logout("Tentativo di lettura dei To-Do fallita, rieffettuare il login")
     });
   }
 
-  protected showToDos(data: any) {
+  protected showToDos(data: ToDoElem[]) {
     this.toDoList = data
     this.toDoList.reverse();
   }
