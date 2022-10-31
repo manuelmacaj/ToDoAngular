@@ -32,9 +32,9 @@ export class ToDoInsertComponent implements OnInit {
       this.snackBarView('Inserire il To-Do', 'Ok');
       return;
     }
-    this.costruisciToDo()
-    this.toDoService.sendToDb(this.toDoElem)
-    this.textTodo = ""
+    this.costruisciToDo();
+    this.toDoService.sendToDb(this.toDoElem);
+    this.textTodo = "";
   }
 
   costruisciToDo() {

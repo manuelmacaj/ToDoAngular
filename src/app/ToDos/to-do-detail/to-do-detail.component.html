@@ -35,10 +35,11 @@
                 <mat-form-field appearance="outline">
                     <mat-label>To-Do</mat-label>
                     <input matInput type="text" [(ngModel)]="textTodo" [disabled]="toDoSelected.fatto == true">
+                    <mat-hint align="end">{{textTodo.length}}/80</mat-hint>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Data creazione</mat-label>
-                    <input matInput type="datetime" [ngModel]="toDoSelected.current_time" disabled>
+                    <input matInput type="datetime-local" [ngModel]="toDoSelected.current_time" disabled>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Fatto?</mat-label>
