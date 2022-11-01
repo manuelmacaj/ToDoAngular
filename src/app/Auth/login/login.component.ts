@@ -15,8 +15,9 @@ import { RegisterComponent } from '../register/register.component';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  REGEX_EMAIL = "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
 
-  emailControl = new FormControl('', [Validators.required, Validators.email, Validators.maxLength(80)]);
+  emailControl = new FormControl('', [Validators.required, Validators.email, Validators.maxLength(80), Validators.pattern(this.REGEX_EMAIL)]);
   passwordControl = new FormControl('', [Validators.required, Validators.maxLength(20)]);
   loginSub: Subscription | undefined;
 
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void { }
 
   ngOnDestroy(): void {
-    console.log("Subscribe distrutta");
     this.loginSub?.unsubscribe();
   }
 
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   getEmailErrorMessage() { // funzione che mostra nel tag <mat-error> il messaggio d'errore per l'email
     if (this.emailControl.hasError('required'))
       return 'Completare il campo';
-    if(this.emailControl.hasError('maxlength'))
+    if (this.emailControl.hasError('maxlength'))
       return 'Lunghezza email non valida';
     return this.emailControl.hasError('email') ? "Inserire in indirizzo email valida" : ""
   }

@@ -7,6 +7,7 @@
         <mat-form-field appearance="fill" class="field">
             <mat-label>Email</mat-label>
             <input matInput type="email" placeholder="Es: mariorossi@email.it" formControlName="email">
+            <mat-icon *ngIf="!emailControl.invalid" matSuffix>check_circle</mat-icon>
             <mat-hint align="end">{{emailControl.value?.length}}/80</mat-hint>
             <mat-error *ngIf="emailControl.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -14,6 +15,7 @@
         <mat-form-field appearance="fill" class="field">
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password">
+            <mat-icon *ngIf="!passwordControl.invalid" matSuffix>check_circle</mat-icon>
             <mat-hint align="end">{{passwordControl.value?.length}}/20</mat-hint>
             <mat-error *ngIf="passwordControl.invalid">{{getPasswordErrorMessage()}}</mat-error>
         </mat-form-field>

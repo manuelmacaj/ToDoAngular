@@ -1,8 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscriber, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { CustomValidators } from 'src/app/custom-validators';
 import { RegisterForm } from 'src/app/Interfaces/UserInterface';
@@ -13,15 +14,16 @@ import { RegisterForm } from 'src/app/Interfaces/UserInterface';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
-  REGEX_EMAIL = "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+export class RegisterComponent implements OnInit, OnDestroy {
+  REGEX_EMAIL = "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
 
-  nameControl = new FormControl('', Validators.required);
-  surnameControl = new FormControl('', Validators.required);
-  emailControl = new FormControl('', [Validators.required, Validators.email]);
-  passwordControl = new FormControl('', Validators.required);
-  confirmPasswordControl = new FormControl('', Validators.required);
+  nameControl = new FormControl('', [Validators.required, Validators.maxLength(80), Validators.minLength(1)]);
+  surnameControl = new FormControl('', [Validators.required, Validators.maxLength(80)]);
+  emailControl = new FormControl('', [Validators.required, Validators.email, Validators.pattern(this.REGEX_EMAIL)]);
+  passwordControl = new FormControl('', [Validators.required, Validators.maxLength(20)]);
+  confirmPasswordControl = new FormControl('', [Validators.required, Validators.maxLength(20)]);
   signupLoading = false;
+  registerSub: Subscription | undefined
 
   registrazioneFormBuilder = new FormGroup({
     name: this.nameControl,
@@ -37,6 +39,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  ngOnDestroy(): void {
+    this.registerSub?.unsubscribe;
+  }
+
   onSubmit() {
     let registerForm: RegisterForm = {
       name: this.registrazioneFormBuilder.value.name!,
@@ -45,15 +51,16 @@ export class RegisterComponent implements OnInit {
       password: this.registrazioneFormBuilder.value.password!,
     }
     this.disableFields();
-    this.auth.register(registerForm).subscribe(_ => {
-      this.snackBarView("Registrazione completata. ora Accedi", "Ok");
-      this.signupLoading = false;
-      this.dialogRef.close() // se la registrazione ha avuto successo, chiudo il dialog corrente
-    },
-      _ => {
-        this.enableFields()
-      }
-    )
+    this.registerSub = this.auth.register(registerForm).subscribe({
+      next: _ => this.confirmRegistration(),
+      error: _ => this.enableFields()
+    })
+  }
+
+  private confirmRegistration() {
+    this.snackBarView("Registrazione completata. ora Accedi", "Ok");
+    this.signupLoading = false;
+    this.dialogRef.close() // chiusura finestra di riferimento
   }
 
   private snackBarView(text: string, action: string) {
