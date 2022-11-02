@@ -44,3 +44,16 @@ input[type=text]:hover {
 input[type=text]:focus {
     border: 3px solid #555;
 }
+
+.fixed {
+    position: fixed;
+    width: 100%;
+    transition: 0.2s linear;
+    top: 0px;
+}
+
+.nofixed {
+    position: static;
+    transition: 0.2s linear;
+    top: -50px;
+}

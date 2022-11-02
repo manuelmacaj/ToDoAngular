@@ -2,6 +2,12 @@ mat-tab-group {
     margin: 1rem auto;
 }
 
+.nofixed {
+    position: static;
+    transition: 0.2s linear;
+    top: -50px;
+}
+
 .flexContainer {
     margin: 50px;
     display: flex;

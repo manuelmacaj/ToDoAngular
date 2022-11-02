@@ -23,14 +23,12 @@ export class ToDoService {
       let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
       let options = { headers: headers_object }
       const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`;
-      return this.http.post<any>(url, newElem, options)
+      return this.http.post<ToDoElemIns>(url, newElem, options)
         .pipe(catchError(this.handleError))
-        .subscribe(_ => {
-          this.snackBarView("To-Do salvato correttamente", "Ok");
-        },
-          _ => {
-            this.auth.logout("Tentatp di creazione del To-Do fallito. Rieffettuare il login");
-          })
+        .subscribe({
+          next: _ => this.snackBarView("To-Do salvato correttamente", "Ok"),
+          error: _ => this.auth.logout("Tentativo di creazione del To-Do fallito. Rieffettuare il login")   
+        });
     }
     else {
       this.snackBarView("Non sei autenticato, prova ad accedere e riprova", "Ok")

@@ -1,5 +1,5 @@
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/auth.service';
@@ -16,6 +16,7 @@ export class ToDoInsertComponent implements OnInit {
 
   textTodo: string = '';
   lengthTodo: Number = 0;
+  navbarfixed: Boolean = false;
 
   toDoElem: ToDoElemIns = {
     todo_text: '',
@@ -25,7 +26,6 @@ export class ToDoInsertComponent implements OnInit {
   constructor(private toDoService: ToDoService, protected auth: AuthService, private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
   ngOnInit(): void { }
-
 
   takeToDo() { // prelevo il todo dal
     if (this.textTodo == '') { // se è vuoto, mi fermo
