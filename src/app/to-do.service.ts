@@ -20,10 +20,8 @@ export class ToDoService {
 
   sendToDb(newElem: ToDoElemIns) { // POST method per inserire il un nuovo ToDo nel DB remoto
     if (this.auth.isLoggedIn) {
-      let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
-      let options = { headers: headers_object }
       const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`;
-      return this.http.post<ToDoElemIns>(url, newElem, options)
+      return this.http.post<ToDoElemIns>(url, newElem)
         .pipe(catchError(this.handleError))
         .subscribe({
           next: _ => this.snackBarView("To-Do salvato correttamente", "Ok"),
@@ -37,35 +35,27 @@ export class ToDoService {
   }
 
   getAllToDoList(): Observable<ToDoElem[]> { // GET method che restituisce tutti i ToDo salvati sul DB remoto
-    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
-    let options = { headers: headers_object }
     const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`
-    return this.http.get<any>(url, options).pipe(catchError(this.handleError));
+    return this.http.get<any>(url).pipe(catchError(this.handleError));
   }
 
   getToDoByID(idTodo: number): Observable<ToDoElem> { // GET method che restituisce un ToDo selezionato dall'utente
-    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
-    let options = { headers: headers_object }
     const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/${idTodo}/`
-    return this.http.get<ToDoElem>(url, options).pipe(retry(3), catchError(this.handleError));
+    return this.http.get<ToDoElem>(url).pipe(retry(3), catchError(this.handleError));
   }
 
   updateTodo(updatedElem: ToDoElem): Observable<any> { // PATCH method 
-    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
-    let options = { headers: headers_object }
     const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/${updatedElem.id}/`
     const update_Elem: ToDoUpdate = {
       todo_text: updatedElem.todo_text,
       fatto: updatedElem.fatto
     };
-    return this.http.patch<any>(url, update_Elem, options).pipe(retry(3), catchError(this.handleError));
+    return this.http.patch<any>(url, update_Elem).pipe(retry(3), catchError(this.handleError));
   }
 
   deleteTodo(idTodo: number): Observable<any> { // DELETE method
-    let headers_object = new HttpHeaders().set("Authorization", "Bearer " + this.auth.getToken());
-    let options = { headers: headers_object }
     const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/${idTodo}/`
-    return this.http.delete<any>(url, options).pipe(retry(3), catchError(this.handleError));
+    return this.http.delete<any>(url).pipe(retry(3), catchError(this.handleError));
   }
 
   private snackBarView(text: string, action: string) {

@@ -34,6 +34,13 @@ import { MaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     MaterialModule
   ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
