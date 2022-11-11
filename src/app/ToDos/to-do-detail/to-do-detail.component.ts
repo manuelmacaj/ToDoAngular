@@ -34,9 +34,7 @@ export class ToDoDetailComponent implements OnInit {
     const ID = Number(this.route.snapshot.paramMap.get('id'));
     this.todoService.getToDoByID(ID).subscribe({
       next: data => this.takeToDoSelected(data),
-      error: _ => this.auth.logout("Tentativo di accesso al To-Do selezionato fallito, rieffettuare il login}")
-    })
-    this.todoService.getToDoByID(ID).subscribe(data => {
+      error: _ => this.auth.logout("Tentativo di accesso al To-Do selezionato fallito, rieffettuare il login.")
     })
   }
 

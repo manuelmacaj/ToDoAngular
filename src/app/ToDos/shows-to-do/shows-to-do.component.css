@@ -2,12 +2,6 @@ mat-tab-group {
     margin: 1rem auto;
 }
 
-.nofixed {
-    position: static;
-    transition: 0.2s linear;
-    top: -50px;
-}
-
 .flexContainer {
     margin: 50px;
     display: flex;
@@ -28,14 +22,13 @@ mat-tab-group {
     border-radius: 24px;
 }
 
-.itemCard {
-    padding: 15px;
-    font-size: 16px;
-    text-align: start;
-    cursor: pointer;
-}
-
 .cardLayout:hover {
     box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.8);
     transform: scale(1.05);
+}
+
+.itemCard {
+    padding: 15px;
+    text-align: start;
+    cursor: pointer;
 }

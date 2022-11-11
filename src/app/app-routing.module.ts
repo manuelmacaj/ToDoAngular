@@ -9,7 +9,7 @@ import { ToDoInsertComponent } from './ToDos/to-do-insert/to-do-insert.component
 const routes: Routes = [
   { path: '', redirectTo: "/insert", pathMatch: "full" },
   { path: "insert", component: ToDoInsertComponent },
-  { path: "todos", component: ShowsToDoComponent, canActivate: [AuthGuard] },
+  { path: "myToDoList", component: ShowsToDoComponent, canActivate: [AuthGuard] },
   { path: "detail/:id", component: ToDoDetailComponent},
   { path: "**", pathMatch: "full", component: PageNotFoundComponent }
 ];

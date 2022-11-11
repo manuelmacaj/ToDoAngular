@@ -36,7 +36,7 @@ export class ToDoService {
 
   getAllToDoList(): Observable<ToDoElem[]> { // GET method che restituisce tutti i ToDo salvati sul DB remoto
     const url = `${API_URL}/user/${localStorage.getItem("id")}/todo/`
-    return this.http.get<any>(url).pipe(catchError(this.handleError));
+    return this.http.get<ToDoElem[]>(url).pipe(catchError(this.handleError));
   }
 
   getToDoByID(idTodo: number): Observable<ToDoElem> { // GET method che restituisce un ToDo selezionato dall'utente
